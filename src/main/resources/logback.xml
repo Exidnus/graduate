@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration scan="true" scanPeriod="30 seconds">
+
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+        <resetJUL>true</resetJUL>
+    </contextListener>
+
+    <appender name="file" class="ch.qos.logback.core.FileAppender">
+        <file>${GRADUATE}/log/graduate.log</file>
+
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%date %-5level %-5logger{0} [%file:%line] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>UTF-8</encoder>
+        <pattern>%date %-5level %-5logger{0} [%file:%line] %msg%n</pattern>
+    </appender>
+
+    <logger name="ru.dvvar.graduate" level="debug"/>
+
+    <root level="info">
+        <appender-ref ref="file"/>
+        <appender-ref ref="console"/>
+    </root>
+
+</configuration>
