@@ -1,4 +1,4 @@
-package ru.dvvar.graduate.service;
+package ru.dvvar.graduate.repository;
 
 import ru.dvvar.graduate.model.User;
 
@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by Dmitriy_Varygin on 05.04.2016.
  */
-public interface UserService {
+public interface UserRepository {
 
     User save(User user);
 
@@ -15,11 +15,8 @@ public interface UserService {
 
     void delete(int id);
 
-    void update(User user);
-
     List<User> getAll();
 
     User getByEmail(String email);
-
 
 }
