@@ -1,5 +1,6 @@
 package ru.dvvar.graduate.model;
 
+import java.util.Date;
 import java.util.Set;
 
 /**
@@ -10,6 +11,8 @@ public class User extends NamedEntity {
     private String email;
 
     private String password;
+
+    private Date registered = new Date();
 
     private Set<Role> roles;
 
@@ -46,5 +49,13 @@ public class User extends NamedEntity {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public Date getRegistered() {
+        return registered;
+    }
+
+    public void setRegistered(Date registered) {
+        this.registered = registered;
     }
 }
