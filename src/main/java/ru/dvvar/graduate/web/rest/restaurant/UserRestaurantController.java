@@ -30,7 +30,7 @@ public class UserRestaurantController {
         return service.get(id);
     }
 
-    public Restaurant getWithAllMenus(int id) {
+    public Restaurant getOneWithAllMenus(int id) {
         LOG.info("get {} with all menus", id);
         return service.getWithAllMenus(id);
     }

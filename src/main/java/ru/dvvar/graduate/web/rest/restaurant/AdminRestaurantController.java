@@ -5,7 +5,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.dvvar.graduate.model.GeneralStatistics;
+import ru.dvvar.graduate.model.Menu;
 import ru.dvvar.graduate.model.Restaurant;
+import ru.dvvar.graduate.model.Statistics;
 import ru.dvvar.graduate.service.RestaurantService;
 
 import java.util.List;
@@ -29,29 +32,70 @@ public class AdminRestaurantController {
         return service.get(id);
     }
 
-    public Restaurant getWithAllMenus(int id) {
+    public Restaurant getOneWithAllMenus(int id) {
         LOG.info("get {} with all menus", id);
         return service.getWithAllMenus(id);
     }
 
-    public Restaurant create(Restaurant restaurant) {
-        restaurant.setId(null);
-        LOG.info("create " + restaurant);
-        return service.save(restaurant);
-    }
-
-    public void delete(int id) {
-        LOG.info("delete " + id);
-        service.delete(id);
-    }
-
-    public void update(Restaurant restaurant) {
-        LOG.info("update " + restaurant);
-        service.update(restaurant);
-    }
-
-    public List<Restaurant> getAll() {
+    public List<Restaurant> getAllWithCurrentMenus() {
         LOG.info("getAll");
         return service.getAll();
+    }
+
+    public void upvote(int id, int userId) {
+        LOG.info("vote for restaurant with id {} from user with id {}", id, userId);
+        service.upvote(id, userId);
+    }
+
+    public void cancel(int userId) {
+        LOG.info("cancel vote for user with id {}", userId);
+        service.cancelUpvote(userId);
+    }
+
+    public Restaurant add(Restaurant restaurant, int userId) {
+        LOG.info("User with id {} added restaurant {}", userId, restaurant);
+        return service.add(restaurant, userId);
+    }
+
+    public void update(Restaurant restaurant, int userId) {
+        LOG.info("User with id {} updated restaurant {}", userId, restaurant);
+        service.update(restaurant, userId);
+    }
+
+    public void delete(int id, int userId) {
+        LOG.info("User with id {} deleted restaurant with id {}", userId, id);
+        service.delete(id, userId);
+    }
+
+    public void createOrChangeCurrentMenu(Menu menu, int id, int userId) {
+        LOG.info("User with id {} updated current menu {} for restaurant with id {}",
+                userId, menu, id);
+        service.createOrUpdateCurrentMenu(menu, id, userId);
+    }
+
+    public void deleteCurrentMenu(int id, int userId) {
+        LOG.info("User with id {} deleted current menu from restaurant with id {}");
+        service.deleteCurrentMenu(id, userId);
+    }
+
+    public void deleteMenuFromHistory(int menuId, int id, int userId) {
+        LOG.info("User with id {} deleted menu with id {} from history of restaurant with id {}",
+                userId, menuId, userId);
+        service.deleteMenuFromHistory(menuId, id, userId);
+    }
+
+    public Statistics getStatisticForOne(int id, int userId) {
+        LOG.info("User with id {} got statistic for restaurant with id {}", id, userId);
+        return service.getStatisticForOne(id, userId);
+    }
+
+    public List<Statistics> getStatisticsForAll(int userId) {
+        LOG.info("User with id {} got statistics for all restaurants", userId);
+        return service.getStatisticsForAll(userId);
+    }
+
+    public GeneralStatistics getGeneralStatistics(int userId) {
+        LOG.info("User with id {} got general statistics", userId);
+        return service.getGeneralStatistics(userId);
     }
 }
