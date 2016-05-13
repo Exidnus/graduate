@@ -2,6 +2,7 @@ package ru.dvvar.graduate.web.rest.user;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import ru.dvvar.graduate.model.User;
 import ru.dvvar.graduate.service.UserService;
 
@@ -14,6 +15,7 @@ public abstract class AbstractUserController {
 
     private final Logger log = LoggerFactory.getLogger(AbstractUserController.class);
 
+    @Autowired
     private UserService service;
 
     public List<User> getAll() {
@@ -41,15 +43,5 @@ public abstract class AbstractUserController {
         user.setId(id);
         log.info("update " + user);
         service.update(user);
-    }
-
-    public void update(User user) {
-        log.info("update " + user);
-        service.update(user);
-    }
-
-    public User getByMail(String email) {
-        log.info("getByEmail " + email);
-        return service.getByEmail(email);
     }
 }
