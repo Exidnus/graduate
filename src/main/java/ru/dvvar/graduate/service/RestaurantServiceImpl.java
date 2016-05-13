@@ -1,6 +1,5 @@
 package ru.dvvar.graduate.service;
 
-import ru.dvvar.graduate.model.Menu;
 import ru.dvvar.graduate.model.Restaurant;
 import ru.dvvar.graduate.repository.RestaurantRepository;
 
@@ -38,4 +37,13 @@ public class RestaurantServiceImpl implements RestaurantService {
         return restaurantRepository.getAll();
     }
 
+    @Override
+    public void upvote(int id, int userId) {
+
+    }
+
+    @Override
+    public Restaurant getWithAllMenus(int id) {
+        return null;
+    }
 }

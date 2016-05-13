@@ -2,6 +2,9 @@ package ru.dvvar.graduate.web.rest.restaurant;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import ru.dvvar.graduate.model.Restaurant;
 import ru.dvvar.graduate.service.RestaurantService;
 
@@ -10,10 +13,15 @@ import java.util.List;
 /**
  * Created by Dmitriy_Varygin on 05.04.2016.
  */
-public class RestaurantController {
+@RestController
+@RequestMapping(AdminRestaurantController.REST_URL)
+public class AdminRestaurantController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(RestaurantController.class);
+    static final String REST_URL = "/admin/restaurants";
 
+    private static final Logger LOG = LoggerFactory.getLogger(AdminRestaurantController.class);
+
+    @Autowired
     private RestaurantService service;
 
     public Restaurant get(int id) {

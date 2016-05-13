@@ -9,6 +9,8 @@ import java.util.List;
  */
 public interface RestaurantService {
 
+    void upvote(int id, int userId);
+
     Restaurant save(Restaurant restaurant);
 
     Restaurant get(int id);

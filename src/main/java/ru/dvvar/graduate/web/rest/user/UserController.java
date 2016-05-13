@@ -14,7 +14,7 @@ import ru.dvvar.graduate.model.User;
 @RequestMapping(UserController.REST_URL)
 public class UserController extends AbstractUserController {
 
-    static final String REST_URL = "/rest/profile";
+    static final String REST_URL = "/profile";
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public User get(@PathVariable("id") int id) {
