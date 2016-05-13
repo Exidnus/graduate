@@ -22,4 +22,6 @@ public interface RestaurantService {
     List<Restaurant> getAll();
 
     Restaurant getWithAllMenus(int id);
+
+    void cancelUpvote(int userId);
 }

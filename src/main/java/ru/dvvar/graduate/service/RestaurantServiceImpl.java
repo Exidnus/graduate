@@ -38,12 +38,17 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
+    public Restaurant getWithAllMenus(int id) {
+        return null;
+    }
+
+    @Override
     public void upvote(int id, int userId) {
 
     }
 
     @Override
-    public Restaurant getWithAllMenus(int id) {
-        return null;
+    public void cancelUpvote(int userId) {
+
     }
 }
