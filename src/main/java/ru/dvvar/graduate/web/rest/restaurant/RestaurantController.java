@@ -1,4 +1,4 @@
-package ru.dvvar.graduate.web;
+package ru.dvvar.graduate.web.rest.restaurant;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,15 +16,20 @@ public class RestaurantController {
 
     private RestaurantService service;
 
+    public Restaurant get(int id) {
+        LOG.info("get " + id);
+        return service.get(id);
+    }
+
+    public Restaurant getWithAllMenus(int id) {
+        LOG.info("get {} with all menus", id);
+        return service.getWithAllMenus(id);
+    }
+
     public Restaurant create(Restaurant restaurant) {
         restaurant.setId(null);
         LOG.info("create " + restaurant);
         return service.save(restaurant);
-    }
-
-    public Restaurant get(int id) {
-        LOG.info("get " + id);
-        return service.get(id);
     }
 
     public void delete(int id) {

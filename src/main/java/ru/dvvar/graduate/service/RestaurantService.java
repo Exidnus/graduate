@@ -18,4 +18,6 @@ public interface RestaurantService {
     void update(Restaurant restaurant);
 
     List<Restaurant> getAll();
+
+    Restaurant getWithAllMenus(int id);
 }

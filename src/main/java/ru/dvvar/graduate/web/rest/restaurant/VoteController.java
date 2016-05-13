@@ -1,4 +1,4 @@
-package ru.dvvar.graduate.web;
+package ru.dvvar.graduate.web.rest.restaurant;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

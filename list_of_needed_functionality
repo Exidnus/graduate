@@ -1,0 +1,31 @@
+1.Users
+
+Usual
+1.1.Create User
+1.2.Update User
+1.3.Delete User
+
+Admin
+include usual functionality 1.1.-1.3.
+1.4.Get all users
+
+2.Restaurants
+
+Usual
+2.1.Get one restaurant with current menu
+2.2.Get all restaurants with current menu's
+2.3.Get one restaurant with all menus (history)
+2.4.Upvote
+2.5.Change upvote
+
+Admin
+include usual functionality 2.1.-2.5.
+2.6.Add restaurant
+2.7.Update restaurant
+2.8.Delete restaurant
+2.9.Add current menu to restaurant
+2.10.Update current menu of restaurant
+2.11.Delete current menu of restaurant
+2.12.Delete menu from history restaurant
+2.13.Get statistics for one restaurant
+2.14.Get statistics for all restaurants
