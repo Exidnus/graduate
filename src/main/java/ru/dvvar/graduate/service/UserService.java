@@ -9,13 +9,13 @@ import java.util.List;
  */
 public interface UserService {
 
-    User save(User user);
-
     User get(int id);
 
-    void delete(int id);
+    User save(User user);
 
     void update(User user);
+
+    void delete(int id);
 
     List<User> getAll();
 
