@@ -1,5 +1,6 @@
 package ru.dvvar.graduate.repository;
 
+import org.springframework.stereotype.Repository;
 import ru.dvvar.graduate.model.User;
 
 import javax.persistence.EntityManager;
@@ -9,6 +10,7 @@ import java.util.List;
 /**
  * Created by Dmitriy_Varygin on 15.05.2016.
  */
+@Repository
 public class JpaUserRepository implements UserRepository {
 
     @PersistenceContext

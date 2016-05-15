@@ -16,9 +16,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <spring.version>4.2.5.RELEASE</spring.version>
+        <spring.version>4.2.6.RELEASE</spring.version>
+        <postrgresql.version>9.4.1208</postrgresql.version>
         <hibernate.version>5.1.0.Final</hibernate.version>
         <hibernate-validator.version>5.2.4.Final</hibernate-validator.version>
+        <junit.version>4.12</junit.version>
         <slf4j.version>1.7.20</slf4j.version>
         <logback.version>1.1.7</logback.version>
     </properties>
@@ -61,6 +63,24 @@
             </exclusions>
         </dependency>
 
+        <!-- DB -->
+
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postrgresql.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
         <!-- Hibernate -->
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -84,6 +104,20 @@
             <version>${hibernate-validator.version}</version>
         </dependency>
 
+
+        <!-- Test -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+            <scope>test</scope>
+        </dependency>
 
         <!-- Logging with SLF4J & LogBack -->
         <dependency>
