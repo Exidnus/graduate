@@ -1,12 +1,11 @@
-package ru.dvvar.graduate.web.rest.restaurant;
+package ru.dvvar.graduate.web.restaurant;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 import ru.dvvar.graduate.model.Restaurant;
-import ru.dvvar.graduate.model.Vote;
 import ru.dvvar.graduate.service.RestaurantService;
 
 import java.util.List;
@@ -25,27 +24,32 @@ public class UserRestaurantController {
 
     private static final Logger LOG = LoggerFactory.getLogger(UserRestaurantController.class);
 
-    public Restaurant get(int id) {
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Restaurant get(@PathVariable int id) {
         LOG.info("get " + id);
         return service.get(id);
     }
 
-    public Restaurant getOneWithAllMenus(int id) {
+    @RequestMapping(value = "/history/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Restaurant getOneWithAllMenus(@PathVariable int id) {
         LOG.info("get {} with all menus", id);
         return service.getWithAllMenus(id);
     }
 
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Restaurant> getAllWithCurrentMenus() {
         LOG.info("getAll");
         return service.getAll();
     }
 
-    public void upvote(int id, int userId) {
+    @RequestMapping(value = "/upvote/{id}", method = RequestMethod.PUT)
+    public void upvote(@PathVariable int id, @RequestParam int userId) {
         LOG.info("vote for restaurant with id {} from user with id {}", id, userId);
         service.upvote(id, userId);
     }
 
-    public void cancel(int userId) {
+    @RequestMapping(value = "/upvote/{userId}", method = RequestMethod.DELETE)
+    public void cancel(@PathVariable int userId) {
         LOG.info("cancel vote for user with id {}", userId);
         service.cancelUpvote(userId);
     }

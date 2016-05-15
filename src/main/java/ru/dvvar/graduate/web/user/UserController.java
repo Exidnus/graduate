@@ -1,4 +1,4 @@
-package ru.dvvar.graduate.web.rest.user;
+package ru.dvvar.graduate.web.user;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -7,16 +7,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import ru.dvvar.graduate.model.User;
 
-import java.util.List;
-
 /**
- * Created by Dmitriy_Varygin on 13.05.2016.
+ * Created by Dmitriy_Varygin on 05.04.2016.
  */
 @RestController
-@RequestMapping(AdminController.REST_URL)
-public class AdminController extends AbstractUserController {
+@RequestMapping(UserController.REST_URL)
+public class UserController extends AbstractUserController {
 
-    static final String REST_URL = "/admin/users";
+    static final String REST_URL = "/profile";
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public User get(@PathVariable("id") int id) {
@@ -37,10 +35,5 @@ public class AdminController extends AbstractUserController {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("id") int id) {
         super.delete(id);
-    }
-
-    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<User> getAll() {
-        return super.getAll();
     }
 }
