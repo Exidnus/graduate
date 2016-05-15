@@ -1,5 +1,6 @@
 package ru.dvvar.graduate.model;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -11,9 +12,16 @@ import java.util.Set;
 /**
  * Created by Dmitriy_Varygin on 03.04.2016.
  */
+@NamedQueries({
+        @NamedQuery(name = User.DELETE, query = "DELETE FROM User u WHERE u.id=:id"),
+        @NamedQuery(name = User.GET_ALL, query = "SELECT DISTINCT u FROM User u ORDER BY u.name DESC")
+})
 @Entity
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "users_unique_email_idx")})
 public class User extends NamedEntity {
+
+    public static final String DELETE = "User.delete";
+    public static final String GET_ALL = "User.getAll";
 
     @Column(name = "email", nullable = false, unique = true)
     @Email
@@ -40,6 +48,13 @@ public class User extends NamedEntity {
 
     public User(Integer id, String name, String email, String password, Set<Role> roles) {
         super(id, name);
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
+    }
+
+    public User(String name, String email, String password, Set<Role> roles) {
+        super(name);
         this.email = email;
         this.password = password;
         this.roles = roles;
@@ -75,5 +90,17 @@ public class User extends NamedEntity {
 
     public void setRegistered(Date registered) {
         this.registered = registered;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("id", id)
+                .append("name", name)
+                .append("email", getEmail())
+                .append("password", getPassword())
+                .append("registered", registered)
+                .append("roles", getRoles())
+                .toString();
     }
 }

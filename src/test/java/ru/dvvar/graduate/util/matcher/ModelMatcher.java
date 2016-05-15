@@ -2,6 +2,7 @@ package ru.dvvar.graduate.util.matcher;
 
 import org.junit.Assert;
 
+import java.util.List;
 import java.util.function.Function;
 
 /**
@@ -19,5 +20,9 @@ public class ModelMatcher<T, R> {
 
     public void assertEquals(T expected, T actual) {
         Assert.assertEquals(entityConverter.apply(expected), entityConverter.apply(actual));
+    }
+
+    public void assertListsEquals(List<T> expected, List<T> actual) {
+        Assert.assertTrue(expected.equals(actual));
     }
 }

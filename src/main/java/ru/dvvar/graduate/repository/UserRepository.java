@@ -13,7 +13,7 @@ public interface UserRepository {
 
     User get(int id);
 
-    void delete(int id);
+    boolean delete(int id);
 
     List<User> getAll();
 

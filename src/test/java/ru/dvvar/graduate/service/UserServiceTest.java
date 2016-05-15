@@ -8,6 +8,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import ru.dvvar.graduate.model.Role;
+import ru.dvvar.graduate.model.User;
+
+import java.util.EnumSet;
 
 import static ru.dvvar.graduate.UserTestData.*;
 
@@ -26,8 +30,39 @@ public class UserServiceTest extends TestCase {
     private UserService service;
 
     @Test
-    public void get() throws Exception {
-        MATCHER.assertEquals(USER, service.get(USER_ID));
+    public void shouldGet() throws Exception {
+        MATCHER.assertEquals(USUAL, service.get(USER_ID));
+    }
+
+    @Test
+    public void shouldDelete() throws Exception {
+        assertTrue(service.delete(USER_ID));
+    }
+
+    @Test
+    public void shouldNotDelete() throws Exception {
+        assertFalse(service.delete(1));
+    }
+
+    @Test
+    public void shouldUpdate() throws Exception {
+        TestUser updated = new TestUser(USUAL);
+        updated.setName("James");
+        updated.setEmail("james@google.com");
+        updated.setRoles(EnumSet.allOf(Role.class));
+        service.update(updated.asUser());
+        MATCHER.assertEquals(updated, service.get(updated.getId()));
+    }
+
+    @Test
+    public void shouldSave() throws Exception {
+        User saved = service.save(new User("James", "james@google.com", "james12345", EnumSet.of(Role.ROLE_ADMIN)));
+        MATCHER.assertEquals(saved, service.get(saved.getId()));
+    }
+
+    @Test
+    public void shouldGetAll() throws Exception {
+        MATCHER.assertListsEquals(USERS_ORDERED_BY_NAME, service.getAll());
     }
 
 }
