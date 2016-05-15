@@ -8,6 +8,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ru.dvvar.graduate.model.User;
 
+import static ru.dvvar.graduate.UserTestData.*;
+
 /**
  * Created by Dmitriy_Varygin on 15.05.2016.
  */
@@ -23,8 +25,7 @@ public class UserServiceTest extends TestCase {
 
     @Test
     public void get() throws Exception {
-        User user = service.get(100_000);
-        assertTrue(user != null);
+        MATCHER.assertEquals(USER, service.get(USER_ID));
     }
 
 }
