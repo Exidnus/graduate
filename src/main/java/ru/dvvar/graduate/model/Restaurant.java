@@ -1,15 +1,36 @@
 package ru.dvvar.graduate.model;
 
+import javax.persistence.*;
 import java.util.List;
 
 /**
  * Created by Dmitriy_Varygin on 03.04.2016.
  */
+@Entity
+@Table(name = "restaurants", uniqueConstraints = @UniqueConstraint(columnNames = "name", name = "restaurants_unique_name_idx"))
 public class Restaurant extends NamedEntity {
 
+    @Column(name = "name")
+    private String description;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "current_menu_id")
     private Menu currentMenu;
 
+    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<Menu> menus;
+
+    public Restaurant() {
+
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public Menu getCurrentMenu() {
         return currentMenu;

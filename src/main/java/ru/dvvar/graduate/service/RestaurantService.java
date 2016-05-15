@@ -12,19 +12,19 @@ import java.util.List;
  */
 public interface RestaurantService {
 
-    void upvote(int id, int userId);
+    Restaurant get(int id);
+
+    List<Restaurant> getAll();
 
     Restaurant save(Restaurant restaurant);
-
-    Restaurant get(int id);
 
     void delete(int id, int userId);
 
     void update(Restaurant restaurant, int userId);
 
-    List<Restaurant> getAll();
-
     Restaurant getWithAllMenus(int id);
+
+    void upvote(int id, int userId);
 
     void cancelUpvote(int userId);
 

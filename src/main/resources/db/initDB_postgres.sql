@@ -29,14 +29,16 @@ CREATE TABLE restaurants
 (
   id                 INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
   name               VARCHAR NOT NULL,
-  description        VARCHAR
+  description        VARCHAR,
+  current_menu_id    INTEGER
 );
+CREATE UNIQUE INDEX restaurants_unique_name_idx ON restaurants (name);
 
 CREATE TABLE menus
 (
   id                 INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
   name               VARCHAR NOT NULL,
-  descriptioin       VARCHAR,
+  description       VARCHAR,
   restaurant_id      INTEGER NOT NULL,
   FOREIGN KEY (restaurant_id) REFERENCES restaurants (id) ON DELETE CASCADE
 );
@@ -45,7 +47,8 @@ CREATE TABLE dishes
 (
   id                 INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
   name               VARCHAR NOT NULL,
-  descriptioin       VARCHAR,
+  description        VARCHAR,
+  price              NUMERIC(6, 2) NOT NULL,
   menu_id            INTEGER NOT NULL,
   FOREIGN KEY (menu_id) REFERENCES menus (id) ON DELETE CASCADE
 )
