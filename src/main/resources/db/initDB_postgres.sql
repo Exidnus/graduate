@@ -15,6 +15,7 @@ CREATE TABLE users
   password           VARCHAR NOT NULL,
   registered         TIMESTAMP DEFAULT now()
 );
+CREATE UNIQUE INDEX users_unique_email_idx ON users (email);
 
 CREATE TABLE user_roles
 (
