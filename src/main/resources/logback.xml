@@ -6,7 +6,7 @@
     </contextListener>
 
     <appender name="file" class="ch.qos.logback.core.FileAppender">
-        <file>${GRADUATE}/log/graduate.log</file>
+        <file>${GRADUATE_ROOT}/log/graduate.log</file>
 
         <encoder>
             <charset>UTF-8</charset>
