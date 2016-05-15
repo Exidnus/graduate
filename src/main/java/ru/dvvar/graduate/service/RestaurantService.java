@@ -30,15 +30,23 @@ public interface RestaurantService {
 
     Restaurant add(Restaurant restaurant, int userId);
 
-    void createOrUpdateCurrentMenu(Menu menu, int id, int userId);
+    Menu createOrUpdateCurrentMenu(Menu menu, int id, int userId);
 
     void deleteCurrentMenu(int id, int userId);
 
-    Statistics getStatisticForOne(int id, int userId);
+    default void deleteMenuFromHistory(int menuId, int id, int userId) {
+        throw new UnsupportedOperationException();
+    }
 
-    List<Statistics> getStatisticsForAll(int userId);
+    default Statistics getStatisticForOne(int id, int userId) {
+        throw new UnsupportedOperationException();
+    }
 
-    GeneralStatistics getGeneralStatistics(int userId);
+    default List<Statistics> getStatisticsForAll(int userId) {
+        throw new UnsupportedOperationException();
+    }
 
-    void deleteMenuFromHistory(int menuId, int id, int userId);
+    default GeneralStatistics getGeneralStatistics(int userId)  {
+        throw new UnsupportedOperationException();
+    }
 }
