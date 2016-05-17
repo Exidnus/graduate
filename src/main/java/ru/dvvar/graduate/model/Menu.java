@@ -14,10 +14,10 @@ public class Menu extends NamedEntity {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "current_upvotes", nullable = false)
+    @Column(name = "current_upvotes")
     private int currentUpvotes;
 
-    @Column(name = "all_upvotes", nullable = false)
+    @Column(name = "all_upvotes")
     private int allUpvotes;
 
     @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)

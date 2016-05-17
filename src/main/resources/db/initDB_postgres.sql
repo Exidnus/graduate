@@ -39,8 +39,8 @@ CREATE TABLE menus
 (
   id                 INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
   name               VARCHAR NOT NULL,
-  current_upvotes    INTEGER NOT NULL,
-  all_upvotes        INTEGER NOT NULL,
+  current_upvotes    INTEGER DEFAULT 0,
+  all_upvotes        INTEGER DEFAULT 0,
   description        VARCHAR,
   restaurant_id      INTEGER NOT NULL,
   FOREIGN KEY (restaurant_id) REFERENCES restaurants (id) ON DELETE CASCADE
