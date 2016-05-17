@@ -14,6 +14,12 @@ public class Menu extends NamedEntity {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "current_upvotes", nullable = false)
+    private int currentUpvotes;
+
+    @Column(name = "all_upvotes", nullable = false)
+    private int allUpvotes;
+
     @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private List<Dish> dishes;
 
@@ -39,6 +45,22 @@ public class Menu extends NamedEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getCurrentUpvotes() {
+        return currentUpvotes;
+    }
+
+    public void setCurrentUpvotes(int currentUpvotes) {
+        this.currentUpvotes = currentUpvotes;
+    }
+
+    public int getAllUpvotes() {
+        return allUpvotes;
+    }
+
+    public void setAllUpvotes(int allUpvotes) {
+        this.allUpvotes = allUpvotes;
     }
 
     public List<Dish> getDishes() {

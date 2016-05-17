@@ -10,6 +10,7 @@ CREATE SEQUENCE global_seq START 100000;
 CREATE TABLE users
 (
   id                 INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+  menu_upvote_id     INTEGER NOT NULL DEFAULT 0,
   name               VARCHAR NOT NULL,
   email              VARCHAR NOT NULL,
   password           VARCHAR NOT NULL,
@@ -38,7 +39,9 @@ CREATE TABLE menus
 (
   id                 INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
   name               VARCHAR NOT NULL,
-  description       VARCHAR,
+  current_upvotes    INTEGER NOT NULL,
+  all_upvotes        INTEGER NOT NULL,
+  description        VARCHAR,
   restaurant_id      INTEGER NOT NULL,
   FOREIGN KEY (restaurant_id) REFERENCES restaurants (id) ON DELETE CASCADE
 );

@@ -23,6 +23,9 @@ public class User extends NamedEntity {
     public static final String DELETE = "User.delete";
     public static final String GET_ALL = "User.getAll";
 
+    @Column(name = "menu_upvote_id", nullable = false)
+    private int menuUpvoteId;
+
     @Column(name = "email", nullable = false, unique = true)
     @Email
     @NotEmpty
@@ -58,6 +61,14 @@ public class User extends NamedEntity {
         this.email = email;
         this.password = password;
         this.roles = roles;
+    }
+
+    public int getMenuUpvoteId() {
+        return menuUpvoteId;
+    }
+
+    public void setMenuUpvoteId(int menuUpvoteId) {
+        this.menuUpvoteId = menuUpvoteId;
     }
 
     public String getEmail() {
@@ -96,6 +107,7 @@ public class User extends NamedEntity {
     public String toString() {
         return new ToStringBuilder(this)
                 .append("id", id)
+                .append("id's upvoted mene", menuUpvoteId)
                 .append("name", name)
                 .append("email", getEmail())
                 .append("password", getPassword())
