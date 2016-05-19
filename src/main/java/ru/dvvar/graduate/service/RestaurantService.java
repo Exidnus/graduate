@@ -26,7 +26,7 @@ public interface RestaurantService {
 
     Restaurant getWithAllMenus(int id);
 
-    void upvote(int id, int userId);
+    void upvote(int menuId, int userId);
 
     void cancelUpvote(int userId);
 

@@ -107,7 +107,7 @@ public class User extends NamedEntity {
     public String toString() {
         return new ToStringBuilder(this)
                 .append("id", id)
-                .append("id's upvoted mene", menuUpvoteId)
+                .append("upvoted menu id's", menuUpvoteId)
                 .append("name", name)
                 .append("email", getEmail())
                 .append("password", getPassword())

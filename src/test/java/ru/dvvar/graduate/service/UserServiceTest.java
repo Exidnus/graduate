@@ -31,7 +31,7 @@ public class UserServiceTest extends TestCase {
 
     @Test
     public void shouldGet() throws Exception {
-        MATCHER.assertEquals(USUAL, service.get(USER_ID));
+        MATCHER.assertEquals(USUAL_USER, service.get(USER_ID));
     }
 
     @Test
@@ -46,7 +46,7 @@ public class UserServiceTest extends TestCase {
 
     @Test
     public void shouldUpdate() throws Exception {
-        TestUser updated = new TestUser(USUAL);
+        TestUser updated = new TestUser(USUAL_USER);
         updated.setName("James");
         updated.setEmail("james@google.com");
         updated.setRoles(EnumSet.allOf(Role.class));

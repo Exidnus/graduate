@@ -12,6 +12,7 @@ import ru.dvvar.graduate.model.Menu;
 import ru.dvvar.graduate.model.Restaurant;
 
 import static ru.dvvar.graduate.RestaurantTestData.*;
+import static ru.dvvar.graduate.UserTestData.USER_ID;
 
 /**
  * Created by Dmitriy_Varygin on 19.05.2016.
@@ -27,12 +28,12 @@ public class RestaurantServiceTest extends TestCase {
     @Autowired
     private RestaurantService service;
 
+    @Autowired
+    private UserService userService;
+
     @Test
     public void shouldGet() throws Exception {
         RESTAURANT_MATCHER.assertEquals(RESTAURANT_1, service.get(RESTAURANT_ID_1));
-        Restaurant got = service.get(RESTAURANT_ID_1);
-        System.out.println(RESTAURANT_1);
-        System.out.println(got);
     }
 
     @Test
@@ -63,5 +64,17 @@ public class RestaurantServiceTest extends TestCase {
         Menu menu = service.getMenu(MENU_ID_1);
         assertTrue(menu != null);
         System.out.println(menu);
+    }
+
+    @Test
+    public void shouldUpvote() throws Exception {
+        service.upvote(MENU_ID_1, USER_ID);
+        assertEquals(MENU_1.getCurrentUpvotes() + 1, service.getMenu(MENU_ID_1).getCurrentUpvotes());
+        assertEquals(MENU_ID_1, userService.get(USER_ID).getMenuUpvoteId());
+    }
+
+    @Test
+    public void shouldCancelUpvote() throws Exception {
+        service.cancelUpvote(USER_ID);
     }
 }

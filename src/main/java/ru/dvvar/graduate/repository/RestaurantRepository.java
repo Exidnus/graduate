@@ -23,4 +23,6 @@ public interface RestaurantRepository {
     List<Restaurant> getAll();
 
     Menu getMenu(int id);
+
+    void upvoteForMenu(int menuId);
 }

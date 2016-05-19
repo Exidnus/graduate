@@ -1,8 +1,5 @@
 package ru.dvvar.graduate.model;
 
-import org.apache.commons.lang3.builder.StandardToStringStyle;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
 import javax.persistence.*;
 
 /**
@@ -58,13 +55,6 @@ public class BaseEntity {
 
     @Override
     public String toString() {
-        StandardToStringStyle style = new StandardToStringStyle();
-        style.setContentStart("");
-        style.setContentEnd("");
-        style.setUseClassName(false);
-        style.setUseIdentityHashCode(false);
-        return new ToStringBuilder(this, style)
-                .append("id", id)
-                .toString();
+        return "id=" + id;
     }
 }

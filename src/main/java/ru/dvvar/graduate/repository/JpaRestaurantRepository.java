@@ -38,6 +38,14 @@ public class JpaRestaurantRepository implements RestaurantRepository {
     }
 
     @Override
+    @Transactional
+    public void upvoteForMenu(int menuId) {
+        Menu upvoting = em.find(Menu.class, menuId);
+        upvoting.upvote();
+        em.merge(upvoting);
+    }
+
+    @Override
     public Menu getMenu(int id) {
         return em.find(Menu.class, id);
     }

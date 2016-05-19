@@ -1,10 +1,15 @@
 package ru.dvvar.graduate.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.dvvar.graduate.model.Menu;
 import ru.dvvar.graduate.model.Restaurant;
+import ru.dvvar.graduate.model.User;
 import ru.dvvar.graduate.repository.RestaurantRepository;
+import ru.dvvar.graduate.repository.UserRepository;
 
 import java.util.List;
 
@@ -14,8 +19,13 @@ import java.util.List;
 @Service
 public class RestaurantServiceImpl implements RestaurantService {
 
+    private static final Logger LOG = LoggerFactory.getLogger(RestaurantServiceImpl.class);
+
     @Autowired
     private RestaurantRepository repository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public Restaurant get(int id) {
@@ -43,8 +53,16 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public void upvote(int id, int userId) {
-
+    @Transactional
+    public void upvote(int menuId, int userId) {
+        final User voter = userRepository.get(userId);
+        if (voter.getMenuUpvoteId() == 0) {
+            voter.setMenuUpvoteId(menuId);
+            userRepository.save(voter);
+            repository.upvoteForMenu(menuId);
+        } else {
+            LOG.debug("menuUpvoteId is not 0 of User {}", voter);
+        }
     }
 
     @Override
