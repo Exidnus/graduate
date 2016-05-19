@@ -54,7 +54,7 @@ public class Menu extends NamedEntity {
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
-                .append(super.toString())
+                .appendSuper(super.toString())
                 .append("description", description)
                 .append("currentUpvotes", currentUpvotes)
                 .append("allUpvotes", allUpvotes)

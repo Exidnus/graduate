@@ -40,7 +40,7 @@ public class NamedEntity extends BaseEntity {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.NO_CLASS_NAME_STYLE)
+        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
                 .append(super.toString())
                 .append("name", name)
                 .toString();

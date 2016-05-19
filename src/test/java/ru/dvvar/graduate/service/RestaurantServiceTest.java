@@ -59,5 +59,6 @@ public class RestaurantServiceTest extends TestCase {
     public void shouldGetMenu() throws Exception {
         Menu menu = service.getMenu(MENU_ID_1);
         assertTrue(menu != null);
+        System.out.println(menu);
     }
 }

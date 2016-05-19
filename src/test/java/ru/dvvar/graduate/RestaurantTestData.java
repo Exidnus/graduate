@@ -39,18 +39,18 @@ public class RestaurantTestData {
     public static final int DISH_ID_11 = START_SEQ + 19;
     public static final int DISH_ID_12 = START_SEQ + 20;
 
-    public static final Dish DISH_1 = new Dish(DISH_ID_1, "Тайское обычное блюдо 1", "Описание обычного блюда 1", 155.00f);
-    public static final Dish DISH_2 = new Dish(DISH_ID_2, "Тайское обычное блюдо 2", "Описание обычного блюда 2", 45.00f);
-    public static final Dish DISH_3 = new Dish(DISH_ID_3, "Тайское обычное блюдо 3", "Описание обычного блюда 3", 25.25f);
-    public static final Dish DISH_4 = new Dish(DISH_ID_4, "Тайское праздничное блюдо 1", "Описание праздничного блюда 1", 250.45f);
-    public static final Dish DISH_5 = new Dish(DISH_ID_5, "Тайское праздничное блюдо 2", "Описание праздничного блюда 2", 55.00f);
-    public static final Dish DISH_6 = new Dish(DISH_ID_6, "Pizza and sushi dish 1", "Description pizza and sushi dish 1", 120.00f);
-    public static final Dish DISH_7 = new Dish(DISH_ID_7, "Pizza and sushi dish 2", "Description pizza and sushi dish 2", 100.00f);
-    public static final Dish DISH_8 = new Dish(DISH_ID_8, "Pizza and sushi dish 3", "Description pizza and sushi dish 3", 10.45f);
-    public static final Dish DISH_9 = new Dish(DISH_ID_9, "Pizza and sushi dish 4", "Description pizza and sushi dish 4", 27.30f);
-    public static final Dish DISH_10 = new Dish(DISH_ID_10, "Pizza and sushi dish 5", "Description pizza and sushi dish 1", 5.50f);
-    public static final Dish DISH_11 = new Dish(DISH_ID_11, "Coffee and delicious cakes блюдо 1", "Описание блюда Coffee and delicious cakes 1", 110.75f);
-    public static final Dish DISH_12 = new Dish(DISH_ID_12, "Coffee and delicious cakes блюдо 2", "Описание блюда Coffee and delicious cakes 2", 25.00f);
+    public static final Dish DISH_1 = new Dish(DISH_ID_1, "Тайское обычное блюдо 1", "Описание обычного блюда 1", 155.00f, 0);
+    public static final Dish DISH_2 = new Dish(DISH_ID_2, "Тайское обычное блюдо 2", "Описание обычного блюда 2", 45.00f, 1);
+    public static final Dish DISH_3 = new Dish(DISH_ID_3, "Тайское обычное блюдо 3", "Описание обычного блюда 3", 25.25f, 2);
+    public static final Dish DISH_4 = new Dish(DISH_ID_4, "Тайское праздничное блюдо 1", "Описание праздничного блюда 1", 250.45f, 0);
+    public static final Dish DISH_5 = new Dish(DISH_ID_5, "Тайское праздничное блюдо 2", "Описание праздничного блюда 2", 55.00f, 1);
+    public static final Dish DISH_6 = new Dish(DISH_ID_6, "Pizza and sushi dish 1", "Description pizza and sushi dish 1", 120.00f, 0);
+    public static final Dish DISH_7 = new Dish(DISH_ID_7, "Pizza and sushi dish 2", "Description pizza and sushi dish 2", 100.00f, 1);
+    public static final Dish DISH_8 = new Dish(DISH_ID_8, "Pizza and sushi dish 3", "Description pizza and sushi dish 3", 10.45f, 2);
+    public static final Dish DISH_9 = new Dish(DISH_ID_9, "Pizza and sushi dish 4", "Description pizza and sushi dish 4", 27.30f, 3);
+    public static final Dish DISH_10 = new Dish(DISH_ID_10, "Pizza and sushi dish 5", "Description pizza and sushi dish 1", 5.50f, 4);
+    public static final Dish DISH_11 = new Dish(DISH_ID_11, "Coffee and delicious cakes блюдо 1", "Описание блюда Coffee and delicious cakes 1", 110.75f, 0);
+    public static final Dish DISH_12 = new Dish(DISH_ID_12, "Coffee and delicious cakes блюдо 2", "Описание блюда Coffee and delicious cakes 2", 25.00f, 1);
 
     public static List<Dish> DISHES_1 = Arrays.asList(DISH_1, DISH_2, DISH_3);
     public static List<Dish> DISHES_2 = Arrays.asList(DISH_4, DISH_5);

@@ -52,7 +52,7 @@ public class Restaurant extends NamedEntity {
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
-                .append(super.toString())
+                .appendSuper(super.toString())
                 .append("description", description)
                 .append("currentMenu", currentMenu)
                 .toString();

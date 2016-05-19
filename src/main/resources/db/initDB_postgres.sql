@@ -52,6 +52,7 @@ CREATE TABLE dishes
   name               VARCHAR NOT NULL,
   description        VARCHAR,
   price              NUMERIC(6, 2) NOT NULL,
+  position           INTEGER NOT NULL,
   menu_id            INTEGER NOT NULL,
   FOREIGN KEY (menu_id) REFERENCES menus (id) ON DELETE CASCADE
 )
