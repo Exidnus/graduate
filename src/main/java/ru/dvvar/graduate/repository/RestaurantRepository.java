@@ -8,9 +8,10 @@ import java.util.List;
  * Created by Dmitriy_Varygin on 05.04.2016.
  */
 public interface RestaurantRepository {
-    Restaurant save(Restaurant restaurant);
 
     Restaurant get(int id);
+
+    Restaurant save(Restaurant restaurant);
 
     void delete(int id);
 

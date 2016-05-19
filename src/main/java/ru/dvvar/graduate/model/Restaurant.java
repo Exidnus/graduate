@@ -10,7 +10,7 @@ import java.util.List;
 @Table(name = "restaurants", uniqueConstraints = @UniqueConstraint(columnNames = "name", name = "restaurants_unique_name_idx"))
 public class Restaurant extends NamedEntity {
 
-    @Column(name = "name")
+    @Column(name = "description")
     private String description;
 
     @OneToOne(fetch = FetchType.EAGER)

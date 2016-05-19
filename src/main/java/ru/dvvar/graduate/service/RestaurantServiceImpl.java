@@ -1,5 +1,7 @@
 package ru.dvvar.graduate.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ru.dvvar.graduate.model.Menu;
 import ru.dvvar.graduate.model.Restaurant;
 import ru.dvvar.graduate.repository.RestaurantRepository;
@@ -9,18 +11,20 @@ import java.util.List;
 /**
  * Created by Dmitriy_Varygin on 05.04.2016.
  */
+@Service
 public class RestaurantServiceImpl implements RestaurantService {
 
-    RestaurantRepository restaurantRepository;
-
-    @Override
-    public Restaurant save(Restaurant restaurant) {
-        return restaurantRepository.save(restaurant);
-    }
+    @Autowired
+    private RestaurantRepository restaurantRepository;
 
     @Override
     public Restaurant get(int id) {
         return restaurantRepository.get(id);
+    }
+
+    @Override
+    public Restaurant save(Restaurant restaurant) {
+        return restaurantRepository.save(restaurant);
     }
 
     @Override
