@@ -25,11 +25,14 @@ import static ru.dvvar.graduate.RestaurantTestData.*;
 public class RestaurantServiceTest extends TestCase {
 
     @Autowired
-    RestaurantService service;
+    private RestaurantService service;
 
     @Test
     public void shouldGet() throws Exception {
         RESTAURANT_MATCHER.assertEquals(RESTAURANT_1, service.get(RESTAURANT_ID_1));
+        Restaurant got = service.get(RESTAURANT_ID_1);
+        System.out.println(RESTAURANT_1);
+        System.out.println(got);
     }
 
     @Test

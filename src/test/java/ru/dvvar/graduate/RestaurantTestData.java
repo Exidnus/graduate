@@ -70,6 +70,10 @@ public class RestaurantTestData {
         RESTAURANT_1.setMenus(Arrays.asList(MENU_1, MENU_2)
                 .stream()
                 .sorted((m1, m2) -> m2.getAllUpvotes() - m1.getAllUpvotes())
+                .peek(m -> m.setDishes(m.getDishes()
+                        .stream()
+                        .sorted((d1, d2) -> d1.getPosition() - d2.getPosition())
+                        .collect(Collectors.toList())))
                 .collect(Collectors.toList()));
     }
 
