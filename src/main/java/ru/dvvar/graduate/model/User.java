@@ -63,6 +63,11 @@ public class User extends NamedEntity {
         this.roles = roles;
     }
 
+    public User(Integer id, String name, String email, String password, Set<Role> roles, int menuUpvoteId) {
+        this(id, name, email, password, roles);
+        this.menuUpvoteId = menuUpvoteId;
+    }
+
     public int getMenuUpvoteId() {
         return menuUpvoteId;
     }

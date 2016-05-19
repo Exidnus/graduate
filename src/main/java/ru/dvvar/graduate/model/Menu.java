@@ -56,6 +56,10 @@ public class Menu extends NamedEntity {
         currentUpvotes++;
     }
 
+    public void cancelUpvote() {
+        currentUpvotes--;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)

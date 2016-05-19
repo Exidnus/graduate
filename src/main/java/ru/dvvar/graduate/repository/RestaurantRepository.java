@@ -24,5 +24,5 @@ public interface RestaurantRepository {
 
     Menu getMenu(int id);
 
-    void upvoteForMenu(int menuId);
+    Menu save(Menu menu);
 }

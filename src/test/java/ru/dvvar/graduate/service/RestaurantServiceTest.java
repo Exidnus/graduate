@@ -12,6 +12,7 @@ import ru.dvvar.graduate.model.Menu;
 import ru.dvvar.graduate.model.Restaurant;
 
 import static ru.dvvar.graduate.RestaurantTestData.*;
+import static ru.dvvar.graduate.UserTestData.ADMIN_ID;
 import static ru.dvvar.graduate.UserTestData.USER_ID;
 
 /**
@@ -75,6 +76,23 @@ public class RestaurantServiceTest extends TestCase {
 
     @Test
     public void shouldCancelUpvote() throws Exception {
-        service.cancelUpvote(USER_ID);
+        service.cancelUpvote(ADMIN_ID);
+        assertEquals(MENU_3.getCurrentUpvotes() - 1, service.getMenu(MENU_ID_3).getCurrentUpvotes());
+        assertEquals(0, userService.get(ADMIN_ID).getMenuUpvoteId());
+    }
+
+    @Test
+    public void shouldAddRestaurant() throws Exception {
+
+    }
+
+    @Test
+    public void shouldUpdateRestarant() throws Exception {
+
+    }
+
+    @Test
+    public void shouldDeleteRestaurant() throws Exception {
+
     }
 }

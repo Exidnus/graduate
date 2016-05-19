@@ -27,7 +27,7 @@ public class UserTestData {
     public static final int ADMIN_ID = START_SEQ + 1;
 
     public static final User USUAL_USER = new User(USER_ID, "Vasiliy", "vasiliy@yandex.ru", "12345", EnumSet.of(ROLE_USER));
-    public static final User ADMIN = new User(ADMIN_ID, "Karl", "karl@google.com", "abcd", EnumSet.allOf(Role.class));
+    public static final User ADMIN = new User(ADMIN_ID, "Karl", "karl@google.com", "abcde", EnumSet.allOf(Role.class), START_SEQ + 7);
 
     public static final List<User> USERS_ORDERED_BY_NAME = Arrays.asList(USUAL_USER, ADMIN)
             .stream()

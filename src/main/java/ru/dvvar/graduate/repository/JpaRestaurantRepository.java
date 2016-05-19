@@ -38,21 +38,30 @@ public class JpaRestaurantRepository implements RestaurantRepository {
     }
 
     @Override
-    @Transactional
-    public void upvoteForMenu(int menuId) {
-        Menu upvoting = em.find(Menu.class, menuId);
-        upvoting.upvote();
-        em.merge(upvoting);
-    }
-
-    @Override
     public Menu getMenu(int id) {
         return em.find(Menu.class, id);
     }
 
     @Override
+    @Transactional
+    public Menu save(Menu menu) {
+        if (menu.isNew()) {
+            em.persist(menu);
+            return menu;
+        } else {
+            return em.merge(menu);
+        }
+    }
+
+    @Override
+    @Transactional
     public Restaurant save(Restaurant restaurant) {
-        return null;
+        if (restaurant.isNew()) {
+            em.persist(restaurant);
+            return restaurant;
+        } else {
+            return em.merge(restaurant);
+        }
     }
 
     @Override

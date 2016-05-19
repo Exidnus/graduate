@@ -56,33 +56,37 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Transactional
     public void upvote(int menuId, int userId) {
         final User voter = userRepository.get(userId);
-        if (voter.getMenuUpvoteId() == 0) {
-            voter.setMenuUpvoteId(menuId);
-            userRepository.save(voter);
-            repository.upvoteForMenu(menuId);
-        } else {
-            LOG.debug("menuUpvoteId is not 0 of User {}", voter);
-        }
+        voter.setMenuUpvoteId(menuId);
+        userRepository.save(voter);
+        final Menu upvoted = repository.getMenu(menuId);
+        upvoted.upvote();
+        repository.save(upvoted);
     }
 
     @Override
+    @Transactional
     public void cancelUpvote(int userId) {
-
+        final User voter = userRepository.get(userId);
+        final Menu menu = repository.getMenu(voter.getMenuUpvoteId());
+        menu.cancelUpvote();
+        repository.save(menu);
+        voter.setMenuUpvoteId(0);
+        userRepository.save(voter);
     }
 
     @Override
-    public void update(Restaurant restaurant, int userId) {
+    public Restaurant add(Restaurant restaurant) {
+        return null;
+    }
+
+    @Override
+    public void update(Restaurant restaurant) {
         repository.update(restaurant);
     }
 
     @Override
     public boolean delete(int id) {
         return repository.delete(id);
-    }
-
-    @Override
-    public Restaurant add(Restaurant restaurant, int userId) {
-        return null;
     }
 
     @Override

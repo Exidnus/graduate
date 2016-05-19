@@ -20,17 +20,17 @@ public interface RestaurantService {
 
     Restaurant save(Restaurant restaurant);
 
-    boolean delete(int id);
+    Restaurant add(Restaurant restaurant);
 
-    void update(Restaurant restaurant, int userId);
+    void update(Restaurant restaurant);
+
+    boolean delete(int id);
 
     Restaurant getWithAllMenus(int id);
 
     void upvote(int menuId, int userId);
 
     void cancelUpvote(int userId);
-
-    Restaurant add(Restaurant restaurant, int userId);
 
     Menu createOrUpdateCurrentMenu(Menu menu, int id, int userId);
 
