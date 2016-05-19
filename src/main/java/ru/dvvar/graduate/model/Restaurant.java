@@ -32,7 +32,7 @@ public class Restaurant extends NamedEntity {
 
     @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_id", nullable = false)
-    @OrderBy("name")
+    @OrderBy("allUpvotes DESC")
     private List<Menu> menus;
 
     public Restaurant() {

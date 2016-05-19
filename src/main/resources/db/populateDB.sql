@@ -19,11 +19,11 @@ INSERT INTO restaurants (name, description) VALUES
   ('Pizza and sushi', 'Интересное смешение культур: в этом ресторане подают как пиццу, так и суши'),
   ('Coffee and delicious cakes', 'Любите кофе с вкусными пирожными? Тогда вам сюда.');
 
-INSERT INTO menus (name, description, restaurant_id) VALUES
-  ('Тайское меню 1', 'Стандартное меню', 100002),
-  ('Тайское меню 2', 'Меню для праздничных дней', 100002),
-  ('Pizza and sushi menu 1', 'Standart menu', 100003),
-  ('Coffee and delicious cakes standart menu', 'Just standart menu', 100004);
+INSERT INTO menus (name, description, restaurant_id, current_upvotes, all_upvotes) VALUES
+  ('Тайское меню 1', 'Стандартное меню', 100002, 15, 15),
+  ('Тайское меню 2', 'Меню для праздничных дней', 100002, 25, 75),
+  ('Pizza and sushi menu 1', 'Standart menu', 100003, 43, 43),
+  ('Coffee and delicious cakes standart menu', 'Just standart menu', 100004, 0, 0);
 
 INSERT INTO dishes (name, description, price, menu_id) VALUES
   ('Тайское обычное блюдо 1', 'Описание обычного блюда 1', 155.00, 100005),

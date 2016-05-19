@@ -57,9 +57,9 @@ public class RestaurantTestData {
     public static List<Dish> DISHES_3 = Arrays.asList(DISH_6, DISH_7, DISH_8, DISH_9, DISH_10);
     public static List<Dish> DISHES_4 = Arrays.asList(DISH_11, DISH_12);
 
-    public static final Menu MENU_1 = new Menu(MENU_ID_1, "Тайское меню 1", "Стандартное меню", DISHES_1);
-    public static final Menu MENU_2 = new Menu(MENU_ID_2, "Тайское меню 2", "Меню для праздничных дней", DISHES_2);
-    public static final Menu MENU_3 = new Menu(MENU_ID_3, "Pizza and sushi menu 1", "Standart menu", DISHES_3);
+    public static final Menu MENU_1 = new Menu(MENU_ID_1, "Тайское меню 1", "Стандартное меню", DISHES_1, 15);
+    public static final Menu MENU_2 = new Menu(MENU_ID_2, "Тайское меню 2", "Меню для праздничных дней", DISHES_2, 25, 75);
+    public static final Menu MENU_3 = new Menu(MENU_ID_3, "Pizza and sushi menu 1", "Standart menu", DISHES_3, 43);
     public static final Menu MENU_4 = new Menu(MENU_ID_4, "Coffee and delicious cakes standart menu", "Just standart menu", DISHES_4);
 
     public static final Restaurant RESTAURANT_1 = new Restaurant(RESTAURANT_ID_1, "Тайский ресторан", "Маленький ресторан с тайской едой, шеф-повар родом из Таиланда!", MENU_2);
@@ -69,7 +69,7 @@ public class RestaurantTestData {
     static {
         RESTAURANT_1.setMenus(Arrays.asList(MENU_1, MENU_2)
                 .stream()
-                .sorted((m1, m2) -> m1.getName().compareTo(m2.getName()))
+                .sorted((m1, m2) -> m2.getAllUpvotes() - m1.getAllUpvotes())
                 .collect(Collectors.toList()));
     }
 

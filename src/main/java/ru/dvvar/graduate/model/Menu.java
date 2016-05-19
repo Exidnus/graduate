@@ -40,6 +40,17 @@ public class Menu extends NamedEntity {
         this.description = description;
     }
 
+    public Menu(Integer id, String name, String description, List<Dish> dishes, int currentUpvotes) {
+        this(id, name, description, dishes);
+        this.currentUpvotes = currentUpvotes;
+        this.allUpvotes = currentUpvotes;
+    }
+
+    public Menu(Integer id, String name, String description, List<Dish> dishes, int currentUpvotes, int allUpvotes) {
+        this(id, name, description, dishes, currentUpvotes);
+        this.allUpvotes = allUpvotes;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)

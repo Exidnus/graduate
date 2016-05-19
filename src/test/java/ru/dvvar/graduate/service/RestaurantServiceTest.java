@@ -11,8 +11,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ru.dvvar.graduate.model.Menu;
 import ru.dvvar.graduate.model.Restaurant;
 
-import java.util.stream.Collectors;
-
 import static ru.dvvar.graduate.RestaurantTestData.*;
 
 /**
@@ -41,12 +39,9 @@ public class RestaurantServiceTest extends TestCase {
 
     @Test
     public void shouldGetOneWithAllMenus() throws Exception {
-        Restaurant restaurantWithAllMenus = service.getWithAllMenus(RESTAURANT_ID_1);
+        final Restaurant restaurantWithAllMenus = service.getWithAllMenus(RESTAURANT_ID_1);
         RESTAURANT_MATCHER.assertEquals(RESTAURANT_1, restaurantWithAllMenus);
-        MENU_MATCHER.assertListsEquals(RESTAURANT_1.getMenus(), restaurantWithAllMenus.getMenus()
-                .stream()
-                .sorted((m1, m2) -> m1.getName().compareTo(m2.getName()))
-                .collect(Collectors.toList()));
+        MENU_MATCHER.assertListsEquals(RESTAURANT_1.getMenus(), restaurantWithAllMenus.getMenus());
     }
 
 
