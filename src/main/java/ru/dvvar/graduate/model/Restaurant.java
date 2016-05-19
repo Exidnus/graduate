@@ -24,6 +24,16 @@ public class Restaurant extends NamedEntity {
 
     }
 
+    public Restaurant(Integer id, String name, String description) {
+        super(id, name);
+        this.description = description;
+    }
+
+    public Restaurant(Integer id, String name, String description, Menu currentMenu) {
+        this(id, name, description);
+        this.currentMenu = currentMenu;
+    }
+
     public String getDescription() {
         return description;
     }

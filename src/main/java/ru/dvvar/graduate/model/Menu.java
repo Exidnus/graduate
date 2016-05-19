@@ -32,6 +32,11 @@ public class Menu extends NamedEntity {
         this.dishes = dishes;
     }
 
+    public Menu(Integer id, String name, String description, List<Dish> dishes) {
+        this(id, name, dishes);
+        this.description = description;
+    }
+
     public float getPrice() {
         return (float) dishes
                 .stream()

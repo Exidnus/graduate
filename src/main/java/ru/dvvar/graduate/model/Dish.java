@@ -21,8 +21,9 @@ public class Dish extends NamedEntity {
 
     }
 
-    public Dish(Integer id, String name, float price) {
+    public Dish(Integer id, String name, String description, float price) {
         super(id, name);
+        this.description = description;
         this.price = price;
     }
 
