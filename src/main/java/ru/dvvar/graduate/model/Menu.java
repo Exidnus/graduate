@@ -1,8 +1,10 @@
 package ru.dvvar.graduate.model;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 import javax.persistence.*;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by Dmitriy_Varygin on 03.04.2016.
@@ -38,11 +40,15 @@ public class Menu extends NamedEntity {
         this.description = description;
     }
 
-    public float getPrice() {
-        return (float) dishes
-                .stream()
-                .collect(Collectors.summarizingDouble(Dish::getPrice))
-                .getSum();
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
+                .append(super.toString())
+                .append("description", description)
+                .append("currentUpvotes", currentUpvotes)
+                .append("allUpvotes", allUpvotes)
+                .append("dishes", dishes)
+                .toString();
     }
 
     public String getDescription() {

@@ -63,4 +63,9 @@ public class RestaurantTestData {
     public static final Restaurant RESTAURANT_1 = new Restaurant(RESTAURANT_ID_1, "Тайский ресторан", "Маленький ресторан с тайской едой, шеф-повар родом из Таиланда!", MENU_2);
     public static final Restaurant RESTAURANT_2 = new Restaurant(RESTAURANT_ID_2, "Pizza and sushi", "Интересное смешение культур: в этом ресторане подают как пиццу, так и суши", MENU_3);
     public static final Restaurant RESTAURANT_3 = new Restaurant(RESTAURANT_ID_3, "Coffee and delicious cakes", "Любите кофе с вкусными пирожными? Тогда вам сюда.");
+
+
+    public static void main(String[] args) {
+        System.out.println(MENU_1);
+    }
 }

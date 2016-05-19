@@ -1,5 +1,8 @@
 package ru.dvvar.graduate.model;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -32,6 +35,15 @@ public class Restaurant extends NamedEntity {
     public Restaurant(Integer id, String name, String description, Menu currentMenu) {
         this(id, name, description);
         this.currentMenu = currentMenu;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
+                .append(super.toString())
+                .append("description", description)
+                .append("currentMenu", currentMenu)
+                .toString();
     }
 
     public String getDescription() {

@@ -1,5 +1,8 @@
 package ru.dvvar.graduate.model;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 import javax.persistence.*;
 
 /**
@@ -39,5 +42,14 @@ public class Dish extends NamedEntity {
 
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
+                .append(super.toString())
+                .append("description", description)
+                .append("price", price)
+                .toString();
     }
 }
