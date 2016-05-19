@@ -11,6 +11,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ru.dvvar.graduate.model.Menu;
 import ru.dvvar.graduate.model.Restaurant;
 
+import java.util.stream.Collectors;
+
 import static ru.dvvar.graduate.RestaurantTestData.*;
 
 /**
@@ -29,8 +31,33 @@ public class RestaurantServiceTest extends TestCase {
 
     @Test
     public void shouldGet() throws Exception {
-        Restaurant restaurant = service.get(RESTAURANT_ID_1);
-        MATCHER.assertEquals(RESTAURANT_1, restaurant);
+        RESTAURANT_MATCHER.assertEquals(RESTAURANT_1, service.get(RESTAURANT_ID_1));
+    }
+
+    @Test
+    public void shouldGetAll() throws Exception {
+        RESTAURANT_MATCHER.assertListsEquals(RESTAURANTS, service.getAll());
+    }
+
+    @Test
+    public void shouldGetOneWithAllMenus() throws Exception {
+        Restaurant restaurantWithAllMenus = service.getWithAllMenus(RESTAURANT_ID_1);
+        RESTAURANT_MATCHER.assertEquals(RESTAURANT_1, restaurantWithAllMenus);
+        MENU_MATCHER.assertListsEquals(RESTAURANT_1.getMenus(), restaurantWithAllMenus.getMenus()
+                .stream()
+                .sorted((m1, m2) -> m1.getName().compareTo(m2.getName()))
+                .collect(Collectors.toList()));
+    }
+
+
+    @Test
+    public void shouldDelete() throws Exception {
+        assertTrue(service.delete(RESTAURANT_ID_1));
+    }
+
+    @Test
+    public void shouldNotDelete() throws Exception {
+        assertFalse(service.delete(1));
     }
 
     @Test

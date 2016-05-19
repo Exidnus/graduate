@@ -35,7 +35,7 @@ public class JpaUserRepository implements UserRepository {
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
+    @Transactional()
     public boolean delete(int id) {
         return em.createNamedQuery(User.DELETE)
                 .setParameter("id", id)

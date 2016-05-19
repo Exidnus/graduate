@@ -12,9 +12,11 @@ public interface RestaurantRepository {
 
     Restaurant get(int id);
 
+    Restaurant getWithAllMenus(int id);
+
     Restaurant save(Restaurant restaurant);
 
-    void delete(int id);
+    boolean delete(int id);
 
     void update(Restaurant restaurant);
 

@@ -15,31 +15,31 @@ import java.util.List;
 public class RestaurantServiceImpl implements RestaurantService {
 
     @Autowired
-    private RestaurantRepository restaurantRepository;
+    private RestaurantRepository repository;
 
     @Override
     public Restaurant get(int id) {
-        return restaurantRepository.get(id);
+        return repository.get(id);
     }
 
     @Override
     public Menu getMenu(int id) {
-        return restaurantRepository.getMenu(id);
+        return repository.getMenu(id);
     }
 
     @Override
     public Restaurant save(Restaurant restaurant) {
-        return restaurantRepository.save(restaurant);
+        return repository.save(restaurant);
     }
 
     @Override
     public List<Restaurant> getAll() {
-        return restaurantRepository.getAll();
+        return repository.getAll();
     }
 
     @Override
     public Restaurant getWithAllMenus(int id) {
-        return null;
+        return repository.getWithAllMenus(id);
     }
 
     @Override
@@ -54,12 +54,12 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public void update(Restaurant restaurant, int userId) {
-        restaurantRepository.update(restaurant);
+        repository.update(restaurant);
     }
 
     @Override
-    public void delete(int id, int userId) {
-
+    public boolean delete(int id) {
+        return repository.delete(id);
     }
 
     @Override

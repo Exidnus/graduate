@@ -11,7 +11,17 @@ import java.util.List;
  */
 @Entity
 @Table(name = "restaurants", uniqueConstraints = @UniqueConstraint(columnNames = "name", name = "restaurants_unique_name_idx"))
+@NamedQueries({
+        @NamedQuery(name = Restaurant.DELETE, query = "DELETE FROM Restaurant r WHERE r.id=:id"),
+        @NamedQuery(name = Restaurant.GET_ALL, query = "SELECT r FROM Restaurant r ORDER BY r.name"),
+        @NamedQuery(name = Restaurant.GET_ONE_WITH_ALL_MENUS, query = "SELECT DISTINCT r FROM Restaurant r " +
+                "LEFT JOIN FETCH r.menus WHERE r.id=:id")
+})
 public class Restaurant extends NamedEntity {
+
+    public static final String DELETE = "Restaurant.delete";
+    public static final String GET_ALL = "Restaurant.getAll";
+    public static final String GET_ONE_WITH_ALL_MENUS = "Restaurant.getOneWithAllMenus";
 
     @Column(name = "description")
     private String description;
@@ -21,6 +31,8 @@ public class Restaurant extends NamedEntity {
     private Menu currentMenu;
 
     @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    @JoinColumn(name = "restaurant_id", nullable = false)
+    @OrderBy("name")
     private List<Menu> menus;
 
     public Restaurant() {

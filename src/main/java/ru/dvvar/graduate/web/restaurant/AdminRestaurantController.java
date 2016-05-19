@@ -48,7 +48,7 @@ public class AdminRestaurantController {
     public void delete(int id) {
         final int userId = LoggedUser.getId();
         LOG.info("User with id {} deleted restaurant with id {}", userId, id);
-        service.delete(id, userId);
+        service.delete(id);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,

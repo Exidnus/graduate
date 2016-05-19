@@ -7,6 +7,7 @@ import ru.dvvar.graduate.util.matcher.ModelMatcher;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static ru.dvvar.graduate.model.BaseEntity.START_SEQ;
 
@@ -15,7 +16,8 @@ import static ru.dvvar.graduate.model.BaseEntity.START_SEQ;
  */
 public class RestaurantTestData {
 
-    public static final ModelMatcher<Restaurant, String> MATCHER = new ModelMatcher<>(Restaurant::toString, Restaurant.class);
+    public static final ModelMatcher<Restaurant, String> RESTAURANT_MATCHER = new ModelMatcher<>(Restaurant::toString, Restaurant.class);
+    public static final ModelMatcher<Menu, String> MENU_MATCHER = new ModelMatcher<>(Menu::toString, Menu.class);
 
     public static final int RESTAURANT_ID_1 = START_SEQ + 2;
     public static final int RESTAURANT_ID_2 = START_SEQ + 3;
@@ -64,6 +66,17 @@ public class RestaurantTestData {
     public static final Restaurant RESTAURANT_2 = new Restaurant(RESTAURANT_ID_2, "Pizza and sushi", "Интересное смешение культур: в этом ресторане подают как пиццу, так и суши", MENU_3);
     public static final Restaurant RESTAURANT_3 = new Restaurant(RESTAURANT_ID_3, "Coffee and delicious cakes", "Любите кофе с вкусными пирожными? Тогда вам сюда.");
 
+    static {
+        RESTAURANT_1.setMenus(Arrays.asList(MENU_1, MENU_2)
+                .stream()
+                .sorted((m1, m2) -> m1.getName().compareTo(m2.getName()))
+                .collect(Collectors.toList()));
+    }
+
+    public static final List<Restaurant> RESTAURANTS = Arrays.asList(RESTAURANT_1, RESTAURANT_2, RESTAURANT_3)
+            .stream()
+            .sorted((r1, r2) -> r1.getName().compareTo(r2.getName()))
+            .collect(Collectors.toList());
 
     public static void main(String[] args) {
         System.out.println(MENU_1);

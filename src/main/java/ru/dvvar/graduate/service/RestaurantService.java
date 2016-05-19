@@ -20,7 +20,7 @@ public interface RestaurantService {
 
     Restaurant save(Restaurant restaurant);
 
-    void delete(int id, int userId);
+    boolean delete(int id);
 
     void update(Restaurant restaurant, int userId);
 

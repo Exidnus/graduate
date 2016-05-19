@@ -15,7 +15,7 @@ include usual functionality 1.1.-1.4.
 Usual
 2.1.Get one restaurant with current menu
 2.2.Get all restaurants with current menu's
-2.3.Get one restaurant with last 10 menus (history)
+2.3.Get one restaurant with all menus (history)
 2.4.Upvote
 2.5.Change upvote
 2.6.Cancel upvote
