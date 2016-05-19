@@ -1,6 +1,7 @@
 package ru.dvvar.graduate.repository;
 
 import org.springframework.stereotype.Repository;
+import ru.dvvar.graduate.model.Menu;
 import ru.dvvar.graduate.model.Restaurant;
 
 import javax.persistence.EntityManager;
@@ -19,6 +20,11 @@ public class JpaRestaurantRepository implements RestaurantRepository {
     @Override
     public Restaurant get(int id) {
         return em.find(Restaurant.class, id);
+    }
+
+    @Override
+    public Menu getMenu(int id) {
+        return em.find(Menu.class, id);
     }
 
     @Override

@@ -3,6 +3,7 @@ package ru.dvvar.graduate;
 import ru.dvvar.graduate.model.Dish;
 import ru.dvvar.graduate.model.Menu;
 import ru.dvvar.graduate.model.Restaurant;
+import ru.dvvar.graduate.util.matcher.ModelMatcher;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,6 +14,8 @@ import static ru.dvvar.graduate.model.BaseEntity.START_SEQ;
  * Created by Dmitriy_Varygin on 17.05.2016.
  */
 public class RestaurantTestData {
+
+    public static final ModelMatcher<Restaurant, String> MATCHER = new ModelMatcher<>(Restaurant::toString, Restaurant.class);
 
     public static final int RESTAURANT_ID_1 = START_SEQ + 2;
     public static final int RESTAURANT_ID_2 = START_SEQ + 3;

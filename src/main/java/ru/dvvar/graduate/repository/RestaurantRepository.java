@@ -1,5 +1,6 @@
 package ru.dvvar.graduate.repository;
 
+import ru.dvvar.graduate.model.Menu;
 import ru.dvvar.graduate.model.Restaurant;
 
 import java.util.List;
@@ -18,4 +19,6 @@ public interface RestaurantRepository {
     void update(Restaurant restaurant);
 
     List<Restaurant> getAll();
+
+    Menu getMenu(int id);
 }

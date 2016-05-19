@@ -23,6 +23,11 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
+    public Menu getMenu(int id) {
+        return restaurantRepository.getMenu(id);
+    }
+
+    @Override
     public Restaurant save(Restaurant restaurant) {
         return restaurantRepository.save(restaurant);
     }

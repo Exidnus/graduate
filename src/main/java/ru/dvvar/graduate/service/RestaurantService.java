@@ -14,6 +14,8 @@ public interface RestaurantService {
 
     Restaurant get(int id);
 
+    Menu getMenu(int id);
+
     List<Restaurant> getAll();
 
     Restaurant save(Restaurant restaurant);

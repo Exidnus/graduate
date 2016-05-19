@@ -1,8 +1,6 @@
 package ru.dvvar.graduate.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by Dmitriy_Varygin on 03.04.2016.

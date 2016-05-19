@@ -21,6 +21,7 @@ public class Menu extends NamedEntity {
     private int allUpvotes;
 
     @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    @JoinColumn(name = "menu_id", nullable = false)
     private List<Dish> dishes;
 
     public Menu() {

@@ -8,6 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import ru.dvvar.graduate.model.Menu;
 import ru.dvvar.graduate.model.Restaurant;
 
 import static ru.dvvar.graduate.RestaurantTestData.*;
@@ -29,6 +30,12 @@ public class RestaurantServiceTest extends TestCase {
     @Test
     public void shouldGet() throws Exception {
         Restaurant restaurant = service.get(RESTAURANT_ID_1);
-        assertTrue(restaurant != null);
+        MATCHER.assertEquals(RESTAURANT_1, restaurant);
+    }
+
+    @Test
+    public void shouldGetMenu() throws Exception {
+        Menu menu = service.getMenu(MENU_ID_1);
+        assertTrue(menu != null);
     }
 }
