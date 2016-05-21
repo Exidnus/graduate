@@ -66,6 +66,14 @@ public class RestaurantTestData {
     public static final Restaurant RESTAURANT_2 = new Restaurant(RESTAURANT_ID_2, "Pizza and sushi", "Интересное смешение культур: в этом ресторане подают как пиццу, так и суши", MENU_3);
     public static final Restaurant RESTAURANT_3 = new Restaurant(RESTAURANT_ID_3, "Coffee and delicious cakes", "Любите кофе с вкусными пирожными? Тогда вам сюда.");
 
+    public static final Dish DISH_FOR_SAVE_1 = new Dish("Dish for save 1", "Description dish for save 1", 25.50f, 0);
+    public static final Dish DISH_FOR_SAVE_2 = new Dish("Dish for save 2", "Description dish for save 2", 35.50f, 1);
+    public static final Menu MENU_FOR_SAVE = new Menu("Menu for save", "Description menu for save",
+            Arrays.asList(DISH_FOR_SAVE_1, DISH_FOR_SAVE_2));
+    public static final Restaurant RESTAURANT_FOR_SAVE = new Restaurant("Restaurant for save", "Description restaurant for save",
+            MENU_FOR_SAVE);
+
+
     static {
         RESTAURANT_1.setMenus(Arrays.asList(MENU_1, MENU_2)
                 .stream()

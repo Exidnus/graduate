@@ -36,6 +36,12 @@ public class Menu extends NamedEntity {
         this.dishes = dishes;
     }
 
+    public Menu(String name, String description, List<Dish> dishes) {
+        super(name);
+        this.description = description;
+        this.dishes = dishes;
+    }
+
     public Menu(Integer id, String name, String description, List<Dish> dishes) {
         this(id, name, dishes);
         this.description = description;

@@ -33,7 +33,7 @@ public class AdminRestaurantController {
     public Restaurant add(@RequestBody Restaurant restaurant) {
         final int userId = LoggedUser.getId();
         LOG.info("User with id {} added restaurant {}", userId, restaurant);
-        return service.add(restaurant, userId);
+        return service.add(restaurant);
     }
 
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -41,7 +41,7 @@ public class AdminRestaurantController {
     public void update(@RequestBody Restaurant restaurant) {
         final int userId = LoggedUser.getId();
         LOG.info("User with id {} updated restaurant {}", userId, restaurant);
-        service.update(restaurant, userId);
+        service.update(restaurant);
     }
 
     @RequestMapping(method = RequestMethod.DELETE)

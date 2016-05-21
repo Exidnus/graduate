@@ -49,6 +49,12 @@ public class Restaurant extends NamedEntity {
         this.currentMenu = currentMenu;
     }
 
+    public Restaurant(String name, String description, Menu currentMenu) {
+        super(name);
+        this.description = description;
+        this.currentMenu = currentMenu;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)

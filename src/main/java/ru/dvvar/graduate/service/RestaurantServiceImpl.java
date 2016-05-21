@@ -76,12 +76,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public Restaurant add(Restaurant restaurant) {
-        return null;
-    }
-
-    @Override
-    public void update(Restaurant restaurant) {
-        repository.update(restaurant);
+        return repository.save(restaurant);
     }
 
     @Override
@@ -97,5 +92,10 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public void deleteCurrentMenu(int id, int userId) {
 
+    }
+
+    @Override
+    public Menu addMenu(Menu menuForSave) {
+        return repository.save(menuForSave);
     }
 }

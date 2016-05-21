@@ -32,6 +32,13 @@ public class Dish extends NamedEntity {
         this.position = position;
     }
 
+    public Dish(String name, String description, float price, int position) {
+        super(name);
+        this.description = description;
+        this.price = price;
+        this.position = position;
+    }
+
     public String getDescription() {
         return description;
     }

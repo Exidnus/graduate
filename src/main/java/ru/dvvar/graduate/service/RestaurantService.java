@@ -22,7 +22,9 @@ public interface RestaurantService {
 
     Restaurant add(Restaurant restaurant);
 
-    void update(Restaurant restaurant);
+    default void update(Restaurant restaurant) {
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 
     boolean delete(int id);
 
@@ -51,4 +53,6 @@ public interface RestaurantService {
     default GeneralStatistics getGeneralStatistics(int userId)  {
         throw new UnsupportedOperationException();
     }
+
+    Menu addMenu(Menu menuForSave);
 }

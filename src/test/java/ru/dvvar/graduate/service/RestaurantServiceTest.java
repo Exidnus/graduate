@@ -83,12 +83,14 @@ public class RestaurantServiceTest extends TestCase {
 
     @Test
     public void shouldAddRestaurant() throws Exception {
-
+        Restaurant saved = service.add(RESTAURANT_FOR_SAVE);
+        System.out.println(saved);
     }
 
     @Test
-    public void shouldUpdateRestarant() throws Exception {
-
+    public void shouldAddMenu() throws Exception {
+        Menu menu = service.addMenu(MENU_FOR_SAVE);
+        System.out.println(menu);
     }
 
     @Test
