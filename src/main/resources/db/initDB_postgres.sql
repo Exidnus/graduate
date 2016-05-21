@@ -42,7 +42,7 @@ CREATE TABLE menus
   current_upvotes    INTEGER DEFAULT 0,
   all_upvotes        INTEGER DEFAULT 0,
   description        VARCHAR,
-  restaurant_id      INTEGER NOT NULL,
+  restaurant_id      INTEGER,
   FOREIGN KEY (restaurant_id) REFERENCES restaurants (id) ON DELETE CASCADE
 );
 

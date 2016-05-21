@@ -5,6 +5,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Dmitriy_Varygin on 03.04.2016.
@@ -17,7 +18,7 @@ import java.util.List;
         @NamedQuery(name = Restaurant.GET_ONE_WITH_ALL_MENUS, query = "SELECT DISTINCT r FROM Restaurant r " +
                 "LEFT JOIN FETCH r.menus WHERE r.id=:id")
 })
-public class Restaurant extends NamedEntity {
+public class Restaurant extends NamedEntity implements Comparable<Restaurant> {
 
     public static final String DELETE = "Restaurant.delete";
     public static final String GET_ALL = "Restaurant.getAll";
@@ -26,17 +27,24 @@ public class Restaurant extends NamedEntity {
     @Column(name = "description")
     private String description;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "current_menu_id")
     private Menu currentMenu;
 
-    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
-    @JoinColumn(name = "restaurant_id", nullable = false)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "restaurant_id")
     @OrderBy("allUpvotes DESC")
     private List<Menu> menus;
 
     public Restaurant() {
 
+    }
+
+    public Restaurant(Restaurant that) {
+        super(that.getId(), that.getName());
+        this.description = that.description;
+        this.currentMenu = that.currentMenu;
+        this.menus = that.menus;
     }
 
     public Restaurant(Integer id, String name, String description) {
@@ -53,6 +61,16 @@ public class Restaurant extends NamedEntity {
         super(name);
         this.description = description;
         this.currentMenu = currentMenu;
+    }
+
+    @Override
+    public int compareTo(Restaurant that) {
+        if (Objects.isNull(this.currentMenu) && Objects.isNull(that.currentMenu)) return 0;
+        else if (Objects.isNull(this.currentMenu)) return -1;
+        else if (Objects.isNull(that.currentMenu)) return 1;
+        else {
+            return this.currentMenu.getCurrentUpvotes() - that.getCurrentMenu().getCurrentUpvotes();
+        }
     }
 
     @Override

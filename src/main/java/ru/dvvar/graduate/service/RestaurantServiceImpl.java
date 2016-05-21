@@ -85,12 +85,12 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public Menu createOrUpdateCurrentMenu(Menu menu, int id, int userId) {
+    public Menu updateCurrentMenu(Menu menu, int restaurantId) {
         return null;
     }
 
     @Override
-    public void deleteCurrentMenu(int id, int userId) {
+    public void deleteCurrentMenu(int menuId) {
 
     }
 

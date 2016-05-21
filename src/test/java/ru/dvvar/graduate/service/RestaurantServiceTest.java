@@ -11,6 +11,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ru.dvvar.graduate.model.Menu;
 import ru.dvvar.graduate.model.Restaurant;
 
+import java.util.List;
+
 import static ru.dvvar.graduate.RestaurantTestData.*;
 import static ru.dvvar.graduate.UserTestData.ADMIN_ID;
 import static ru.dvvar.graduate.UserTestData.USER_ID;
@@ -53,6 +55,8 @@ public class RestaurantServiceTest extends TestCase {
     @Test
     public void shouldDelete() throws Exception {
         assertTrue(service.delete(RESTAURANT_ID_1));
+        List<Restaurant> all = service.getAll();
+        assertEquals(TWO_RESTAURANTS_EXCEPT_FIRST, all);
     }
 
     @Test
@@ -83,18 +87,24 @@ public class RestaurantServiceTest extends TestCase {
 
     @Test
     public void shouldAddRestaurant() throws Exception {
-        Restaurant saved = service.add(RESTAURANT_FOR_SAVE);
-        System.out.println(saved);
+        Restaurant forSave = new Restaurant(RESTAURANT_FOR_SAVE);
+        RESTAURANT_MATCHER.assertEquals(forSave, service.add(forSave));
     }
 
     @Test
     public void shouldAddMenu() throws Exception {
-        Menu menu = service.addMenu(MENU_FOR_SAVE);
-        System.out.println(menu);
+        final Menu forSave = new Menu(MENU_FOR_SAVE);
+        final Menu saved = service.addMenu(forSave);
+        //forSave.setId(saved.getId());
+        MENU_MATCHER.assertEquals(forSave, saved);
+        System.out.println(forSave);
+        System.out.println(saved);
     }
 
     @Test
-    public void shouldDeleteRestaurant() throws Exception {
-
+    public void shouldUpdateCurrentMenu() throws Exception {
+        service.updateCurrentMenu(UPDATED_MENU, RESTAURANT_ID_2);
+        Restaurant restaurant = service.get(RESTAURANT_ID_2);
+        MENU_MATCHER.assertEquals(UPDATED_MENU, restaurant.getCurrentMenu());
     }
 }

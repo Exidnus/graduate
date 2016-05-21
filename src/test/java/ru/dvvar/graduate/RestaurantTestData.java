@@ -6,6 +6,7 @@ import ru.dvvar.graduate.model.Restaurant;
 import ru.dvvar.graduate.util.matcher.ModelMatcher;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -66,6 +67,11 @@ public class RestaurantTestData {
     public static final Restaurant RESTAURANT_2 = new Restaurant(RESTAURANT_ID_2, "Pizza and sushi", "Интересное смешение культур: в этом ресторане подают как пиццу, так и суши", MENU_3);
     public static final Restaurant RESTAURANT_3 = new Restaurant(RESTAURANT_ID_3, "Coffee and delicious cakes", "Любите кофе с вкусными пирожными? Тогда вам сюда.");
 
+    public static final List<Restaurant> TWO_RESTAURANTS_EXCEPT_FIRST = Arrays.asList(RESTAURANT_2, RESTAURANT_3)
+            .stream()
+            .sorted((r1, r2) -> r1.getName().compareTo(r2.getName()))
+            .collect(Collectors.toList());
+
     public static final Dish DISH_FOR_SAVE_1 = new Dish("Dish for save 1", "Description dish for save 1", 25.50f, 0);
     public static final Dish DISH_FOR_SAVE_2 = new Dish("Dish for save 2", "Description dish for save 2", 35.50f, 1);
     public static final Menu MENU_FOR_SAVE = new Menu("Menu for save", "Description menu for save",
@@ -73,6 +79,9 @@ public class RestaurantTestData {
     public static final Restaurant RESTAURANT_FOR_SAVE = new Restaurant("Restaurant for save", "Description restaurant for save",
             MENU_FOR_SAVE);
 
+    public static final Dish NEW_DISH = new Dish("New Dish", "New Dish in updated menu", 40.00f, 0);
+    public static final Menu UPDATED_MENU = new Menu(MENU_ID_3, "Updated Menu", "Description of updated menu",
+            Collections.singletonList(NEW_DISH));
 
     static {
         RESTAURANT_1.setMenus(Arrays.asList(MENU_1, MENU_2)

@@ -22,13 +22,20 @@ public class Menu extends NamedEntity {
     @Column(name = "all_upvotes")
     private int allUpvotes;
 
-    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "menu_id", nullable = false)
     @OrderBy("position")
     private List<Dish> dishes;
 
     public Menu() {
 
+    }
+
+    public Menu(Menu that) {
+        super(that.getId(), that.getName());
+        this.name = that.name;
+        this.description = that.description;
+        this.dishes = that.dishes;
     }
 
     public Menu(Integer id, String name, List<Dish> dishes) {
