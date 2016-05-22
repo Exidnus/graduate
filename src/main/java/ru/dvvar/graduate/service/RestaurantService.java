@@ -34,9 +34,9 @@ public interface RestaurantService {
 
     void cancelUpvote(int userId);
 
-    void setCurrentMenu(Menu menu, int restaurantId);
+    void updateMenu(Menu menu);
 
-    void deleteCurrentMenu(int menuId);
+    boolean deleteMenu(int menuId);
 
     default void deleteMenuFromHistory(int menuId, int id, int userId) {
         throw new UnsupportedOperationException();

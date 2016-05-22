@@ -11,7 +11,10 @@ import java.util.List;
  */
 @Entity
 @Table(name = "menus")
+@NamedQuery(name = Menu.DELETE, query = "DELETE FROM Menu m WHERE m.id=:id")
 public class Menu extends NamedEntity {
+
+    public static final String DELETE = "Menu.delete";
 
     @Column(name = "description")
     private String description;

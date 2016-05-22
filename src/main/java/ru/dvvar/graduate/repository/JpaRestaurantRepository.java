@@ -49,6 +49,9 @@ public class JpaRestaurantRepository implements RestaurantRepository {
             em.persist(menu);
             return menu;
         } else {
+            em.createNativeQuery("DELETE FROM dishes d WHERE d.menu_id=:menuId")
+                    .setParameter("menuId", menu.getId())
+                    .executeUpdate();
             return em.merge(menu);
         }
     }
@@ -62,6 +65,14 @@ public class JpaRestaurantRepository implements RestaurantRepository {
         } else {
             return em.merge(restaurant);
         }
+    }
+
+    @Override
+    @Transactional
+    public boolean deleteMenu(int menuId) {
+        return em.createNamedQuery(Menu.DELETE)
+                .setParameter("id", menuId)
+                .executeUpdate() != 0;
     }
 
     @Override

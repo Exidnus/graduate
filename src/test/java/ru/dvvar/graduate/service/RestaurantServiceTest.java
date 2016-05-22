@@ -102,9 +102,16 @@ public class RestaurantServiceTest extends TestCase {
     }*/
 
     @Test
-    public void shouldUpdateCurrentMenu() throws Exception {
-        service.setCurrentMenu(UPDATED_MENU, RESTAURANT_ID_2);
+    public void shouldUpdateMenu() throws Exception {
+        service.updateMenu(UPDATED_MENU);
         Restaurant restaurant = service.get(RESTAURANT_ID_2);
+        UPDATED_MENU.getDishes().get(0).setId(restaurant.getCurrentMenu().getDishes().get(0).getId());
         MENU_MATCHER.assertEquals(UPDATED_MENU, restaurant.getCurrentMenu());
+    }
+
+    @Test
+    public void shouldDeleteMenu() throws Exception {
+        service.deleteMenu(MENU_ID_3);
+        assertNull(service.get(RESTAURANT_ID_2).getCurrentMenu());
     }
 }

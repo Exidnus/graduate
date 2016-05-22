@@ -25,4 +25,6 @@ public interface RestaurantRepository {
     Menu getMenu(int id);
 
     Menu save(Menu menu);
+
+    boolean deleteMenu(int id);
 }

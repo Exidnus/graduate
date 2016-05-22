@@ -57,7 +57,7 @@ public class AdminRestaurantController {
         final int userId = LoggedUser.getId();
         LOG.info("User with id {} added current menu {} for restaurant with id {}",
                 userId, menu, id);
-        //return service.setCurrentMenu(menu, id);
+        //return service.updateMenu(menu, id);
         return menu;
     }
 
@@ -66,14 +66,14 @@ public class AdminRestaurantController {
         final int userId = LoggedUser.getId();
         LOG.info("User with id {} updated current menu {} for restaurant with id {}",
                 userId, menu, id);
-        service.setCurrentMenu(menu, id);
+        service.updateMenu(menu);
     }
 
     @RequestMapping(value = "/{id}/menu", method = RequestMethod.DELETE)
     public void deleteCurrentMenu(@PathVariable int id) {
         final int userId = LoggedUser.getId();
         LOG.info("User with id {} deleted current menu from restaurant with id {}", userId, id);
-        service.deleteCurrentMenu(id);
+        service.deleteMenu(id);
     }
 
     @RequestMapping(value = "/{id}/history/{menuId}", method = RequestMethod.DELETE)
