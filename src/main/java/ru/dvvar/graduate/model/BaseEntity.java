@@ -1,12 +1,17 @@
 package ru.dvvar.graduate.model;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+
 import javax.persistence.*;
+
+import static com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility.*;
 
 /**
  * Created by Dmitriy_Varygin on 03.04.2016.
  */
 @MappedSuperclass
 @Access(AccessType.FIELD)
+@JsonAutoDetect(fieldVisibility = ANY, getterVisibility = NONE, setterVisibility = NONE, isGetterVisibility = NONE)
 public class BaseEntity {
 
     public static final int START_SEQ = 100000;

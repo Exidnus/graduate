@@ -1,7 +1,6 @@
 package ru.dvvar.graduate.web.user;
 
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,13 +27,13 @@ public class UserController extends AbstractUserController {
         return super.create(user);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void update(@PathVariable("id") int id, User user) {
-        super.update(user, id);
+    @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void update( User user) {
+        super.update(user, LoggedUser.getId());
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable("id") int id) {
-        super.delete(id);
+    @RequestMapping(method = RequestMethod.DELETE)
+    public void delete() {
+        super.delete(LoggedUser.getId());
     }
 }
