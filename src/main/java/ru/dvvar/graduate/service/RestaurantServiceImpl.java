@@ -85,8 +85,11 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public Menu updateCurrentMenu(Menu menu, int restaurantId) {
-        return null;
+    @Transactional
+    public void setCurrentMenu(Menu menu, int restaurantId) {
+        final Restaurant restaurant = repository.getWithAllMenus(restaurantId);
+        restaurant.changeCurrentMenu(menu);
+        repository.save(restaurant);
     }
 
     @Override

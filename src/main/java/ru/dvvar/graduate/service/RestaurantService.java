@@ -34,7 +34,7 @@ public interface RestaurantService {
 
     void cancelUpvote(int userId);
 
-    Menu updateCurrentMenu(Menu menu, int restaurantId);
+    void setCurrentMenu(Menu menu, int restaurantId);
 
     void deleteCurrentMenu(int menuId);
 
