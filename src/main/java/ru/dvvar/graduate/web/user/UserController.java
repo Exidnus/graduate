@@ -28,7 +28,7 @@ public class UserController extends AbstractUserController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void update( User user) {
+    public void update(User user) {
         super.update(user, LoggedUser.getId());
     }
 

@@ -1,9 +1,13 @@
 package ru.dvvar.graduate.util.matcher;
 
 import org.junit.Assert;
+import org.springframework.test.web.servlet.ResultMatcher;
+import ru.dvvar.graduate.util.json.JsonUtil;
 
 import java.util.List;
 import java.util.function.Function;
+
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
 /**
  * Created by Dmitriy_Varygin on 15.05.2016.
@@ -24,5 +28,22 @@ public class ModelMatcher<T, R> {
 
     public void assertListsEquals(List<T> expected, List<T> actual) {
         Assert.assertTrue(expected.equals(actual));
+    }
+
+    public ResultMatcher isContentMatch(T expect) {
+        return content().string(
+                new TestMatcher<T>(expect) {
+                    @Override
+                    protected boolean compare(T expected, String actual) {
+                        R actualForCompare = entityConverter.apply(fromJsonValue(actual));
+                        R expectedForCompare = entityConverter.apply(expected);
+                        return expectedForCompare.equals(actualForCompare);
+                    }
+                }
+        );
+    }
+
+    private T fromJsonValue(String json) {
+        return JsonUtil.readValue(json, entityClass);
     }
 }
