@@ -1,11 +1,15 @@
 package ru.dvvar.graduate.web.user;
 
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.dvvar.graduate.model.User;
 import ru.dvvar.graduate.web.LoggedUser;
+
+import java.net.URI;
 
 /**
  * Created by Dmitriy_Varygin on 05.04.2016.
@@ -23,8 +27,14 @@ public class UserController extends AbstractUserController {
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public User create(User user) {
-        return super.create(user);
+    public ResponseEntity<User> createWithLocation(User user) {
+        final User created = super.create(user);
+
+        URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path(REST_URL + "/{id}")
+                .buildAndExpand(created.getId()).toUri();
+
+        return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
