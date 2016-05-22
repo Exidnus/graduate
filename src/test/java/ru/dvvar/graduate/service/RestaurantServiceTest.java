@@ -111,7 +111,6 @@ public class RestaurantServiceTest extends TestCase {
 
     @Test
     public void shouldDeleteMenu() throws Exception {
-        service.deleteMenu(MENU_ID_3);
-        assertNull(service.get(RESTAURANT_ID_2).getCurrentMenu());
+        assertTrue(service.deleteMenu(MENU_ID_3));
     }
 }

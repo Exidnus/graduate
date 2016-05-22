@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import ru.dvvar.graduate.model.User;
+import ru.dvvar.graduate.web.LoggedUser;
 
 /**
  * Created by Dmitriy_Varygin on 05.04.2016.
@@ -16,9 +17,9 @@ public class UserController extends AbstractUserController {
 
     static final String REST_URL = "/profile";
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public User get(@PathVariable("id") int id) {
-        return super.get(id);
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public User get() {
+        return super.get(LoggedUser.getId());
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
