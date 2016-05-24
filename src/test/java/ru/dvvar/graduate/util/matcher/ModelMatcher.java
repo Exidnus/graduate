@@ -1,9 +1,11 @@
 package ru.dvvar.graduate.util.matcher;
 
 import org.junit.Assert;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.ResultMatcher;
 import ru.dvvar.graduate.util.json.JsonUtil;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.function.Function;
 
@@ -41,6 +43,10 @@ public class ModelMatcher<T, R> {
                     }
                 }
         );
+    }
+
+    public T fromJsonAction(ResultActions actions) throws UnsupportedEncodingException {
+        return fromJsonValue(actions.andReturn().getResponse().getContentAsString());
     }
 
     private T fromJsonValue(String json) {

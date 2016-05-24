@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.EnumSet;
 import java.util.Set;
 
 /**
@@ -46,6 +47,16 @@ public class User extends NamedEntity {
     private Set<Role> roles;
 
     public User() {
+
+    }
+
+    public User(User that) {
+        super(that.getId(), that.getName());
+        this.menuUpvoteId = that.menuUpvoteId;
+        this.email = that.email;
+        this.password = that.password;
+        this.registered = that.registered;
+        this.roles = EnumSet.copyOf(that.getRoles());
 
     }
 

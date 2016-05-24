@@ -39,19 +39,29 @@ public class UserControllerTest extends AbstractControllerTest {
 
     @Test
     public void shouldCreate() throws Exception {
-        User expected = new User("Semen", "semen@yandex.ru", "asdfsadf", EnumSet.of(Role.ROLE_USER));
+        final User expected = new User("Semen", "semen@yandex.ru", "asdfsadf", EnumSet.of(Role.ROLE_USER));
         ResultActions actions = mockMvc.perform(post(REST_URL)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(expected)))
                 .andDo(print())
                 .andExpect(status().isCreated());
 
+        final User returned = MATCHER.fromJsonAction(actions);
+        expected.setId(returned.getId());
 
+        MATCHER.assertEquals(expected, returned);
     }
 
     @Test
     public void shouldUpdate() throws Exception {
+        final User forUpdate = new User(USUAL_USER);
+        mockMvc.perform(put(REST_URL)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(JsonUtil.writeValue(forUpdate)))
+                .andDo(print())
+                .andExpect(status().isOk());
 
+        MATCHER.assertEquals(forUpdate, service.get(USER_ID));
     }
 
     @Test

@@ -24,7 +24,7 @@ public class JsonUtil {
         }
     }
 
-    public static final <T> T readValue(String json, Class<T> clazz) {
+    public static <T> T readValue(String json, Class<T> clazz) {
         try {
             return JacksonObjectMapper.getInstance().readValue(json, clazz);
         } catch (IOException e) {
