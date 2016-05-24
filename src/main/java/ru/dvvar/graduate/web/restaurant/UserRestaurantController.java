@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.dvvar.graduate.model.Restaurant;
 import ru.dvvar.graduate.service.RestaurantService;
+import ru.dvvar.graduate.web.LoggedUser;
 
 import java.util.List;
 
@@ -25,8 +26,8 @@ public class UserRestaurantController {
     private static final Logger LOG = LoggerFactory.getLogger(UserRestaurantController.class);
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Restaurant get(@PathVariable int id) {
-        LOG.info("get " + id);
+    public Restaurant getOneWithCurrentMenu(@PathVariable int id) {
+        LOG.info("User with id {} get {}", LoggedUser.getId(), id);
         return service.get(id);
     }
 

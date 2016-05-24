@@ -5,6 +5,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.security.InvalidParameterException;
 import java.util.List;
 
 /**
@@ -73,7 +74,7 @@ public class Menu extends NamedEntity {
         return dishes.stream()
                 .map(Dish::getPrice)
                 .reduce(BigDecimal::add)
-                .orElse(BigDecimal.valueOf(0));
+                .orElseThrow(() -> new InvalidParameterException("Can't get price of menu " + this));
     }
 
     public void upvote() {
