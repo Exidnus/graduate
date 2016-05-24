@@ -5,6 +5,7 @@ import ru.dvvar.graduate.model.Menu;
 import ru.dvvar.graduate.model.Restaurant;
 import ru.dvvar.graduate.util.matcher.ModelMatcher;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -40,18 +41,18 @@ public class RestaurantTestData {
     public static final int DISH_ID_11 = START_SEQ + 19;
     public static final int DISH_ID_12 = START_SEQ + 20;
 
-    public static final Dish DISH_1 = new Dish(DISH_ID_1, "Тайское обычное блюдо 1", "Описание обычного блюда 1", 155.00f, 0);
-    public static final Dish DISH_2 = new Dish(DISH_ID_2, "Тайское обычное блюдо 2", "Описание обычного блюда 2", 45.00f, 1);
-    public static final Dish DISH_3 = new Dish(DISH_ID_3, "Тайское обычное блюдо 3", "Описание обычного блюда 3", 25.25f, 2);
-    public static final Dish DISH_4 = new Dish(DISH_ID_4, "Тайское праздничное блюдо 1", "Описание праздничного блюда 1", 250.45f, 0);
-    public static final Dish DISH_5 = new Dish(DISH_ID_5, "Тайское праздничное блюдо 2", "Описание праздничного блюда 2", 55.00f, 1);
-    public static final Dish DISH_6 = new Dish(DISH_ID_6, "Pizza and sushi dish 1", "Description pizza and sushi dish 1", 120.00f, 0);
-    public static final Dish DISH_7 = new Dish(DISH_ID_7, "Pizza and sushi dish 2", "Description pizza and sushi dish 2", 100.00f, 1);
-    public static final Dish DISH_8 = new Dish(DISH_ID_8, "Pizza and sushi dish 3", "Description pizza and sushi dish 3", 10.45f, 2);
-    public static final Dish DISH_9 = new Dish(DISH_ID_9, "Pizza and sushi dish 4", "Description pizza and sushi dish 4", 27.30f, 3);
-    public static final Dish DISH_10 = new Dish(DISH_ID_10, "Pizza and sushi dish 5", "Description pizza and sushi dish 1", 5.50f, 4);
-    public static final Dish DISH_11 = new Dish(DISH_ID_11, "Coffee and delicious cakes блюдо 1", "Описание блюда Coffee and delicious cakes 1", 110.75f, 0);
-    public static final Dish DISH_12 = new Dish(DISH_ID_12, "Coffee and delicious cakes блюдо 2", "Описание блюда Coffee and delicious cakes 2", 25.00f, 1);
+    public static final Dish DISH_1 = new Dish(DISH_ID_1, "Тайское обычное блюдо 1", "Описание обычного блюда 1", new BigDecimal(155.00).setScale(2, BigDecimal.ROUND_HALF_UP), 0);
+    public static final Dish DISH_2 = new Dish(DISH_ID_2, "Тайское обычное блюдо 2", "Описание обычного блюда 2", new BigDecimal(45.00).setScale(2, BigDecimal.ROUND_HALF_UP), 1);
+    public static final Dish DISH_3 = new Dish(DISH_ID_3, "Тайское обычное блюдо 3", "Описание обычного блюда 3", new BigDecimal(25.25).setScale(2, BigDecimal.ROUND_HALF_UP), 2);
+    public static final Dish DISH_4 = new Dish(DISH_ID_4, "Тайское праздничное блюдо 1", "Описание праздничного блюда 1", new BigDecimal(250.45).setScale(2, BigDecimal.ROUND_HALF_UP), 0);
+    public static final Dish DISH_5 = new Dish(DISH_ID_5, "Тайское праздничное блюдо 2", "Описание праздничного блюда 2", new BigDecimal(55.00).setScale(2, BigDecimal.ROUND_HALF_UP), 1);
+    public static final Dish DISH_6 = new Dish(DISH_ID_6, "Pizza and sushi dish 1", "Description pizza and sushi dish 1", new BigDecimal(120.00).setScale(2, BigDecimal.ROUND_HALF_UP), 0);
+    public static final Dish DISH_7 = new Dish(DISH_ID_7, "Pizza and sushi dish 2", "Description pizza and sushi dish 2", new BigDecimal(100.00).setScale(2, BigDecimal.ROUND_HALF_UP), 1);
+    public static final Dish DISH_8 = new Dish(DISH_ID_8, "Pizza and sushi dish 3", "Description pizza and sushi dish 3", new BigDecimal(10.45).setScale(2, BigDecimal.ROUND_HALF_UP), 2);
+    public static final Dish DISH_9 = new Dish(DISH_ID_9, "Pizza and sushi dish 4", "Description pizza and sushi dish 4", new BigDecimal(27.30).setScale(2, BigDecimal.ROUND_HALF_UP), 3);
+    public static final Dish DISH_10 = new Dish(DISH_ID_10, "Pizza and sushi dish 5", "Description pizza and sushi dish 1", new BigDecimal(5.50).setScale(2, BigDecimal.ROUND_HALF_UP), 4);
+    public static final Dish DISH_11 = new Dish(DISH_ID_11, "Coffee and delicious cakes блюдо 1", "Описание блюда Coffee and delicious cakes 1", new BigDecimal(110.75).setScale(2, BigDecimal.ROUND_HALF_UP), 0);
+    public static final Dish DISH_12 = new Dish(DISH_ID_12, "Coffee and delicious cakes блюдо 2", "Описание блюда Coffee and delicious cakes 2", new BigDecimal(25.00).setScale(2, BigDecimal.ROUND_HALF_UP), 1);
 
     public static List<Dish> DISHES_1 = Arrays.asList(DISH_1, DISH_2, DISH_3);
     public static List<Dish> DISHES_2 = Arrays.asList(DISH_4, DISH_5);
@@ -72,14 +73,14 @@ public class RestaurantTestData {
             .sorted((r1, r2) -> r1.getName().compareTo(r2.getName()))
             .collect(Collectors.toList());
 
-    public static final Dish DISH_FOR_SAVE_1 = new Dish("Dish for save 1", "Description dish for save 1", 25.50f, 0);
-    public static final Dish DISH_FOR_SAVE_2 = new Dish("Dish for save 2", "Description dish for save 2", 35.50f, 1);
+    public static final Dish DISH_FOR_SAVE_1 = new Dish("Dish for save 1", "Description dish for save 1", new BigDecimal(25.50).setScale(2, BigDecimal.ROUND_HALF_UP), 0);
+    public static final Dish DISH_FOR_SAVE_2 = new Dish("Dish for save 2", "Description dish for save 2", new BigDecimal(35.50).setScale(2, BigDecimal.ROUND_HALF_UP), 1);
     public static final Menu MENU_FOR_SAVE = new Menu("Menu for save", "Description menu for save",
             Arrays.asList(DISH_FOR_SAVE_1, DISH_FOR_SAVE_2));
     public static final Restaurant RESTAURANT_FOR_SAVE = new Restaurant("Restaurant for save", "Description restaurant for save",
             MENU_FOR_SAVE);
 
-    public static final Dish NEW_DISH = new Dish("New Dish", "New Dish in updated menu", 40.00f, 0);
+    public static final Dish NEW_DISH = new Dish("New Dish", "New Dish in updated menu", new BigDecimal(40.00).setScale(2, BigDecimal.ROUND_HALF_UP), 0);
     public static final Menu UPDATED_MENU = new Menu(MENU_ID_3, "Updated Menu", "Description of updated menu",
             Collections.singletonList(NEW_DISH));
 

@@ -4,6 +4,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 /**
  * Created by Dmitriy_Varygin on 03.04.2016.
@@ -16,7 +17,7 @@ public class Dish extends NamedEntity {
     private String description;
 
     @Column(name = "price", nullable = false)
-    private float price;
+    private BigDecimal price;
 
     @Column(name = "position", nullable = false)
     private int position;
@@ -25,14 +26,14 @@ public class Dish extends NamedEntity {
 
     }
 
-    public Dish(Integer id, String name, String description, float price, int position) {
+    public Dish(Integer id, String name, String description, BigDecimal price, int position) {
         super(id, name);
         this.description = description;
         this.price = price;
         this.position = position;
     }
 
-    public Dish(String name, String description, float price, int position) {
+    public Dish(String name, String description, BigDecimal price, int position) {
         super(name);
         this.description = description;
         this.price = price;
@@ -47,11 +48,11 @@ public class Dish extends NamedEntity {
         this.description = description;
     }
 
-    public float getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
