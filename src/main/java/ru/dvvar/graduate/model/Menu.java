@@ -4,6 +4,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -66,6 +67,13 @@ public class Menu extends NamedEntity {
     public Menu(Integer id, String name, String description, List<Dish> dishes, int currentUpvotes, int allUpvotes) {
         this(id, name, description, dishes, currentUpvotes);
         this.allUpvotes = allUpvotes;
+    }
+
+    public BigDecimal getPrice() {
+        return dishes.stream()
+                .map(Dish::getPrice)
+                .reduce(BigDecimal::add)
+                .orElse(BigDecimal.valueOf(0));
     }
 
     public void upvote() {

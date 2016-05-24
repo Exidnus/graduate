@@ -18,22 +18,6 @@ public class AdminController extends AbstractUserController {
 
     static final String REST_URL = "/admin/users";
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public User get(@PathVariable("id") int id) {
-        return super.get(id);
-    }
-
-    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public User create(User user) {
-        return super.create(user);
-    }
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void update(@PathVariable("id") int id, User user) {
-        super.update(user, id);
-    }
-
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("id") int id) {
         super.delete(id);
