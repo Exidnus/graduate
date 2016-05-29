@@ -2,6 +2,8 @@ package ru.dvvar.graduate.web.restaurant;
 
 import org.junit.Test;
 import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.ResultActions;
+import ru.dvvar.graduate.model.Restaurant;
 import ru.dvvar.graduate.web.AbstractControllerTest;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -26,7 +28,25 @@ public class UserRestaurantControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    public void shouldGetOneWithAllMenus() throws Exception {
-
+    public void shouldGetAllWithCurrentsMenus() throws Exception {
+        mockMvc.perform(get(REST_URL))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(RESTAURANT_MATCHER.isContentListMatch(RESTAURANTS));
     }
+
+    @Test
+    public void shouldGetOneWithAllMenus() throws Exception {
+        final ResultActions actions = mockMvc.perform(get(REST_URL + "/history/" + RESTAURANT_ID_1))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(RESTAURANT_MATCHER.isContentMatch(RESTAURANT_1));
+
+        final Restaurant restaurantWithHistory = RESTAURANT_MATCHER.fromJsonAction(actions);
+        MENU_MATCHER.assertListsEquals(restaurantWithHistory.getMenus(), RESTAURANT_1.getMenus());
+    }
+
+    //TODO tests on voting
 }

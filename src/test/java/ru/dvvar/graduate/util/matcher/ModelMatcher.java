@@ -6,8 +6,10 @@ import org.springframework.test.web.servlet.ResultMatcher;
 import ru.dvvar.graduate.util.json.JsonUtil;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Collection;
 import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
@@ -45,6 +47,17 @@ public class ModelMatcher<T, R> {
         );
     }
 
+    public ResultMatcher isContentListMatch(List<T> expected) {
+        return content().string(new TestMatcher<List<T>>(expected) {
+            @Override
+            protected boolean compare(List<T> expected, String actual) {
+                List<R> actualList = map(fromJsonValues(actual), entityConverter);
+                List<R> expectedList = map(expected, entityConverter);
+                return expectedList.equals(actualList);
+            }
+        });
+    }
+
     public T fromJsonAction(ResultActions actions) throws UnsupportedEncodingException {
         return fromJsonValue(actions.andReturn().getResponse().getContentAsString());
     }
@@ -52,4 +65,16 @@ public class ModelMatcher<T, R> {
     private T fromJsonValue(String json) {
         return JsonUtil.readValue(json, entityClass);
     }
+
+    private <S, T> List<T> map(Collection<S> collection, Function<S, T> converter) {
+        return collection
+                .stream()
+                .map(converter)
+                .collect(Collectors.toList());
+    }
+
+    private Collection<T> fromJsonValues(String json) {
+        return JsonUtil.readValues(json, entityClass);
+    }
+
 }
