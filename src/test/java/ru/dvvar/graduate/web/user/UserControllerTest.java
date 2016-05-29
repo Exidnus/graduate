@@ -30,6 +30,12 @@ public class UserControllerTest extends AbstractControllerTest {
     private UserService service;
 
     @Test
+    public void unauthorizedShouldNotBeAblePerformAnyActions() throws Exception {
+        mockMvc.perform(get(REST_URL))
+                .andExpect(status().isUnauthorized());
+    }
+
+    @Test
     public void shouldGet() throws Exception {
         mockMvc.perform(get(REST_URL)
                 .with(httpBasic(USUAL_USER.getEmail(), USUAL_USER.getPassword())))
@@ -43,6 +49,7 @@ public class UserControllerTest extends AbstractControllerTest {
     public void shouldCreate() throws Exception {
         final User expected = new User("Semen", "semen@yandex.ru", "asdfsadf", EnumSet.of(Role.ROLE_USER));
         ResultActions actions = mockMvc.perform(post(REST_URL)
+                .with(httpBasic(USUAL_USER.getEmail(), USUAL_USER.getPassword()))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(expected)))
                 .andDo(print())
