@@ -46,8 +46,8 @@ public class AdminRestaurantController {
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    //TODO make tests for service and web
+    @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void update(@RequestBody Restaurant restaurant) {
         LOG.info("User with id {} updated restaurant {}", LoggedUser.getId(), restaurant);
         service.update(restaurant);
@@ -69,18 +69,15 @@ public class AdminRestaurantController {
         return menu;
     }
 
-    @RequestMapping(value = "/{id}/{menuId}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void updateCurrentMenu(@RequestBody Menu menu, @PathVariable int id, @PathVariable int menuId) {
-        final int userId = LoggedUser.getId();
-        LOG.info("User with id {} updated current menu {} for restaurant with id {}",
-                userId, menu, id);
+    @RequestMapping(value = "/menus", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void updateMenu(@RequestBody Menu menu) {
+        LOG.info("User with id {} updated current menu {}", LoggedUser.getId(), menu);
         service.updateMenu(menu);
     }
 
-    @RequestMapping(value = "/{id}/menu", method = RequestMethod.DELETE)
-    public void deleteCurrentMenu(@PathVariable int id) {
-        final int userId = LoggedUser.getId();
-        LOG.info("User with id {} deleted current menu from restaurant with id {}", userId, id);
+    @RequestMapping(value = "/menus/{id}", method = RequestMethod.DELETE)
+    public void deleteMenu(@PathVariable int id) {
+        LOG.info("User with id {} deleted current menu from restaurant with id {}", LoggedUser.getId(), id);
         service.deleteMenu(id);
     }
 

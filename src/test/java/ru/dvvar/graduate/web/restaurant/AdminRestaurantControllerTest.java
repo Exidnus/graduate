@@ -10,8 +10,8 @@ import ru.dvvar.graduate.service.RestaurantService;
 import ru.dvvar.graduate.util.json.JsonUtil;
 import ru.dvvar.graduate.web.AbstractControllerTest;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static junit.framework.TestCase.assertNull;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static ru.dvvar.graduate.RestaurantTestData.*;
@@ -48,6 +48,27 @@ public class AdminRestaurantControllerTest extends AbstractControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk());
         RESTAURANT_MATCHER.assertListsEquals(TWO_RESTAURANTS_EXCEPT_FIRST, service.getAll());
+    }
+
+    @Test
+    public void shouldUpdateMenu() throws Exception {
+        mockMvc.perform(put(REST_URL + "/menus")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(JsonUtil.writeValue(UPDATED_MENU)))
+                .andDo(print())
+                .andExpect(status().isOk());
+
+        final Restaurant restaurant = service.get(RESTAURANT_ID_2);
+        UPDATED_MENU.getDishes().get(0).setId(restaurant.getCurrentMenu().getDishes().get(0).getId());
+        MENU_MATCHER.assertEquals(UPDATED_MENU, restaurant.getCurrentMenu());
+    }
+
+    @Test
+    public void shouldDeleteMenu() throws Exception {
+        mockMvc.perform(delete(REST_URL + "/menus/" + MENU_ID_3))
+                .andDo(print())
+                .andExpect(status().isOk());
+        assertNull(service.getMenu(MENU_ID_3));
     }
 
 }
