@@ -4,7 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.dvvar.graduate.model.GeneralStatistics;
 import ru.dvvar.graduate.model.Menu;
 import ru.dvvar.graduate.model.Restaurant;
@@ -12,6 +14,7 @@ import ru.dvvar.graduate.model.Statistics;
 import ru.dvvar.graduate.service.RestaurantService;
 import ru.dvvar.graduate.web.LoggedUser;
 
+import java.net.URI;
 import java.util.List;
 
 /**
@@ -30,10 +33,17 @@ public class AdminRestaurantController {
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public Restaurant add(@RequestBody Restaurant restaurant) {
-        final int userId = LoggedUser.getId();
-        LOG.info("User with id {} added restaurant {}", userId, restaurant);
-        return service.add(restaurant);
+    public ResponseEntity<Restaurant> createWithLocation(@RequestBody Restaurant restaurant) {
+
+        final Restaurant created = service.add(restaurant);
+
+        URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path(UserRestaurantController.REST_URL + "/{id}")
+                .buildAndExpand(created.getId()).toUri();
+
+        LOG.info("User with id {} added restaurant {}", LoggedUser.getId(), created);
+
+        return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE,

@@ -8,6 +8,6 @@ import static ru.dvvar.graduate.model.BaseEntity.START_SEQ;
 public class LoggedUser {
 
     public static int getId() {
-        return START_SEQ;
+        return START_SEQ + 1;
     }
 }

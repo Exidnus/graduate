@@ -44,9 +44,9 @@ public class UserRestaurantController {
     }
 
     @RequestMapping(value = "/upvote/{id}", method = RequestMethod.PUT)
-    public void upvote(@PathVariable int id, @RequestParam int userId) {
-        LOG.info("vote for restaurant with id {} from user with id {}", id, userId);
-        service.upvote(id, userId);
+    public void upvote(@PathVariable int id) {
+        LOG.info("vote for restaurant with id {} from user with id {}", id, LoggedUser.getId());
+        service.upvote(id, LoggedUser.getId());
     }
 
     @RequestMapping(value = "/upvote/{userId}", method = RequestMethod.DELETE)
