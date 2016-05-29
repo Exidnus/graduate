@@ -38,10 +38,6 @@ public interface RestaurantService {
 
     boolean deleteMenu(int menuId);
 
-    default void deleteMenuFromHistory(int menuId, int id, int userId) {
-        throw new UnsupportedOperationException();
-    }
-
     default Statistics getStatisticForOne(int id, int userId) {
         throw new UnsupportedOperationException();
     }

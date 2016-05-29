@@ -53,8 +53,8 @@ public class AdminRestaurantController {
         service.update(restaurant);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE)
-    public void delete(@RequestParam int id) {
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable int id) {
         LOG.info("User with id {} deleted restaurant with id {}", LoggedUser.getId(), id);
         service.delete(id);
     }
@@ -79,14 +79,6 @@ public class AdminRestaurantController {
     public void deleteMenu(@PathVariable int id) {
         LOG.info("User with id {} deleted current menu from restaurant with id {}", LoggedUser.getId(), id);
         service.deleteMenu(id);
-    }
-
-    @RequestMapping(value = "/{id}/history/{menuId}", method = RequestMethod.DELETE)
-    public void deleteMenuFromHistory(@PathVariable int id, @PathVariable int menuId) {
-        final int userId = LoggedUser.getId();
-        LOG.info("User with id {} deleted menu with id {} from history of restaurant with id {}",
-                userId, menuId, userId);
-        service.deleteMenuFromHistory(menuId, id, userId);
     }
 
     @RequestMapping(value = "/statistics/{id}", method = RequestMethod.GET)

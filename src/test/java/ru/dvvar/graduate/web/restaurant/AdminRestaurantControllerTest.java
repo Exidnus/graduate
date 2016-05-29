@@ -11,10 +11,12 @@ import ru.dvvar.graduate.util.json.JsonUtil;
 import ru.dvvar.graduate.web.AbstractControllerTest;
 
 import static junit.framework.TestCase.assertNull;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static ru.dvvar.graduate.RestaurantTestData.*;
+import static ru.dvvar.graduate.UserTestData.ADMIN;
 import static ru.dvvar.graduate.web.restaurant.AdminRestaurantController.REST_URL;
 
 /**
@@ -28,6 +30,7 @@ public class AdminRestaurantControllerTest extends AbstractControllerTest {
     @Test
     public void shouldAddRestaurant() throws Exception {
         ResultActions actions = mockMvc.perform(post(REST_URL)
+                .with(httpBasic(ADMIN.getEmail(), ADMIN.getPassword()))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(RestaurantTestData.RESTAURANT_FOR_SAVE)))
                 .andDo(print());
@@ -43,8 +46,8 @@ public class AdminRestaurantControllerTest extends AbstractControllerTest {
 
     @Test
     public void shouldDeleteRestaurant() throws Exception {
-        mockMvc.perform(delete(REST_URL)
-                .param("id", String.valueOf(RESTAURANT_ID_1)))
+        mockMvc.perform(delete(REST_URL + "/" + RESTAURANT_ID_1)
+                .with(httpBasic(ADMIN.getEmail(), ADMIN.getPassword())))
                 .andDo(print())
                 .andExpect(status().isOk());
         RESTAURANT_MATCHER.assertListsEquals(TWO_RESTAURANTS_EXCEPT_FIRST, service.getAll());
@@ -53,6 +56,7 @@ public class AdminRestaurantControllerTest extends AbstractControllerTest {
     @Test
     public void shouldUpdateMenu() throws Exception {
         mockMvc.perform(put(REST_URL + "/menus")
+                .with(httpBasic(ADMIN.getEmail(), ADMIN.getPassword()))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(UPDATED_MENU)))
                 .andDo(print())
@@ -65,7 +69,8 @@ public class AdminRestaurantControllerTest extends AbstractControllerTest {
 
     @Test
     public void shouldDeleteMenu() throws Exception {
-        mockMvc.perform(delete(REST_URL + "/menus/" + MENU_ID_3))
+        mockMvc.perform(delete(REST_URL + "/menus/" + MENU_ID_3)
+                .with(httpBasic(ADMIN.getEmail(), ADMIN.getPassword())))
                 .andDo(print())
                 .andExpect(status().isOk());
         assertNull(service.getMenu(MENU_ID_3));
