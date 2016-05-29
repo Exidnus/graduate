@@ -65,6 +65,7 @@ public class UserControllerTest extends AbstractControllerTest {
     public void shouldUpdate() throws Exception {
         final User forUpdate = new User(USUAL_USER);
         mockMvc.perform(put(REST_URL)
+                .with(httpBasic(USUAL_USER.getEmail(), USUAL_USER.getPassword()))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(forUpdate)))
                 .andDo(print())
@@ -75,7 +76,8 @@ public class UserControllerTest extends AbstractControllerTest {
 
     @Test
     public void shouldDelete() throws Exception {
-        mockMvc.perform(delete(REST_URL))
+        mockMvc.perform(delete(REST_URL)
+                .with(httpBasic(USUAL_USER.getEmail(), USUAL_USER.getPassword())))
                 .andDo(print())
                 .andExpect(status().isOk());
         MATCHER.assertListsEquals(Collections.singletonList(ADMIN), service.getAll());
