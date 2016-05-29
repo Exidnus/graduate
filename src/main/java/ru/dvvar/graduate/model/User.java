@@ -15,7 +15,8 @@ import java.util.Set;
  */
 @NamedQueries({
         @NamedQuery(name = User.DELETE, query = "DELETE FROM User u WHERE u.id=:id"),
-        @NamedQuery(name = User.GET_ALL, query = "SELECT DISTINCT u FROM User u ORDER BY u.name DESC")
+        @NamedQuery(name = User.GET_ALL, query = "SELECT DISTINCT u FROM User u ORDER BY u.name DESC"),
+        @NamedQuery(name = User.GET_BY_EMAIL, query = "SELECT u FROM User u WHERE u.email=:email")
 })
 @Entity
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "users_unique_email_idx")})
@@ -23,6 +24,7 @@ public class User extends NamedEntity {
 
     public static final String DELETE = "User.delete";
     public static final String GET_ALL = "User.getAll";
+    public static final String GET_BY_EMAIL = "User.getByEmail";
 
     @Column(name = "menu_upvote_id", nullable = false)
     private int menuUpvoteId;

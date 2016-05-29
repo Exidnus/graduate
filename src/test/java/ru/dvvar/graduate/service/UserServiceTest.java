@@ -10,6 +10,7 @@ import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ru.dvvar.graduate.model.Role;
 import ru.dvvar.graduate.model.User;
+import ru.dvvar.graduate.repository.UserRepository;
 
 import java.util.EnumSet;
 
@@ -28,6 +29,9 @@ public class UserServiceTest extends TestCase {
 
     @Autowired
     private UserService service;
+
+    @Autowired
+    private UserRepository repository;
 
     @Test
     public void shouldGet() throws Exception {
@@ -63,6 +67,11 @@ public class UserServiceTest extends TestCase {
     @Test
     public void shouldGetAll() throws Exception {
         MATCHER.assertListsEquals(USERS_ORDERED_BY_NAME, service.getAll());
+    }
+
+    @Test
+    public void shouldGetByEmail() throws Exception {
+        MATCHER.assertEquals(USUAL_USER, repository.getByEmail(USUAL_USER.getEmail()));
     }
 
 }

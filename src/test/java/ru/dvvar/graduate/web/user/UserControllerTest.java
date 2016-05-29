@@ -13,6 +13,7 @@ import ru.dvvar.graduate.web.AbstractControllerTest;
 import java.util.Collections;
 import java.util.EnumSet;
 
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -30,7 +31,8 @@ public class UserControllerTest extends AbstractControllerTest {
 
     @Test
     public void shouldGet() throws Exception {
-        mockMvc.perform(get(REST_URL))
+        mockMvc.perform(get(REST_URL)
+                .with(httpBasic(USUAL_USER.getEmail(), USUAL_USER.getPassword())))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))

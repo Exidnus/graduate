@@ -46,4 +46,11 @@ public class JpaUserRepository implements UserRepository {
     public List<User> getAll() {
         return em.createNamedQuery(User.GET_ALL, User.class).getResultList();
     }
+
+    @Override
+    public User getByEmail(String email) {
+        return em.createNamedQuery(User.GET_BY_EMAIL, User.class)
+                .setParameter("email", email)
+                .getSingleResult();
+    }
 }

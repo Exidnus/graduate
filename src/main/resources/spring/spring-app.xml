@@ -7,6 +7,8 @@
 
     <context:annotation-config/>
 
+    <import resource="spring-security.xml"/>
+
     <context:component-scan base-package="ru.dvvar.graduate.service"/>
     
 </beans>
