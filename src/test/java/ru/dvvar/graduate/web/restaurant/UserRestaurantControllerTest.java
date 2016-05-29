@@ -6,11 +6,13 @@ import org.springframework.test.web.servlet.ResultActions;
 import ru.dvvar.graduate.model.Restaurant;
 import ru.dvvar.graduate.web.AbstractControllerTest;
 
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static ru.dvvar.graduate.RestaurantTestData.*;
+import static ru.dvvar.graduate.UserTestData.USUAL_USER;
 import static ru.dvvar.graduate.web.restaurant.UserRestaurantController.REST_URL;
 
 /**
@@ -20,7 +22,8 @@ public class UserRestaurantControllerTest extends AbstractControllerTest {
 
     @Test
     public void shouldGetOneWithCurrentMenu() throws Exception {
-        mockMvc.perform(get(REST_URL + "/" + RESTAURANT_ID_1))
+        mockMvc.perform(get(REST_URL + "/" + RESTAURANT_ID_1)
+                .with(httpBasic(USUAL_USER.getEmail(), USUAL_USER.getPassword())))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -29,7 +32,8 @@ public class UserRestaurantControllerTest extends AbstractControllerTest {
 
     @Test
     public void shouldGetAllWithCurrentsMenus() throws Exception {
-        mockMvc.perform(get(REST_URL))
+        mockMvc.perform(get(REST_URL)
+                .with(httpBasic(USUAL_USER.getEmail(), USUAL_USER.getPassword())))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -38,7 +42,8 @@ public class UserRestaurantControllerTest extends AbstractControllerTest {
 
     @Test
     public void shouldGetOneWithAllMenus() throws Exception {
-        final ResultActions actions = mockMvc.perform(get(REST_URL + "/history/" + RESTAURANT_ID_1))
+        final ResultActions actions = mockMvc.perform(get(REST_URL + "/history/" + RESTAURANT_ID_1)
+                .with(httpBasic(USUAL_USER.getEmail(), USUAL_USER.getPassword())))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
