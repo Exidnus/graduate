@@ -10,10 +10,11 @@ import ru.dvvar.graduate.service.RestaurantService;
 import ru.dvvar.graduate.util.json.JsonUtil;
 import ru.dvvar.graduate.web.AbstractControllerTest;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static ru.dvvar.graduate.RestaurantTestData.RESTAURANT_FOR_SAVE;
-import static ru.dvvar.graduate.RestaurantTestData.RESTAURANT_MATCHER;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static ru.dvvar.graduate.RestaurantTestData.*;
 import static ru.dvvar.graduate.web.restaurant.AdminRestaurantController.REST_URL;
 
 /**
@@ -38,6 +39,15 @@ public class AdminRestaurantControllerTest extends AbstractControllerTest {
         RESTAURANT_FOR_SAVE.getCurrentMenu().getDishes().get(1).setId(saved.getCurrentMenu().getDishes().get(1).getId());
         RESTAURANT_MATCHER.assertEquals(saved, RESTAURANT_FOR_SAVE);
         RESTAURANT_MATCHER.assertEquals(service.get(saved.getId()), RESTAURANT_FOR_SAVE);
+    }
+
+    @Test
+    public void shouldDeleteRestaurant() throws Exception {
+        mockMvc.perform(delete(REST_URL)
+                .param("id", String.valueOf(RESTAURANT_ID_1)))
+                .andDo(print())
+                .andExpect(status().isOk());
+        RESTAURANT_MATCHER.assertListsEquals(TWO_RESTAURANTS_EXCEPT_FIRST, service.getAll());
     }
 
 }

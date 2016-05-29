@@ -49,15 +49,13 @@ public class AdminRestaurantController {
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public void update(@RequestBody Restaurant restaurant) {
-        final int userId = LoggedUser.getId();
-        LOG.info("User with id {} updated restaurant {}", userId, restaurant);
+        LOG.info("User with id {} updated restaurant {}", LoggedUser.getId(), restaurant);
         service.update(restaurant);
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
-    public void delete(int id) {
-        final int userId = LoggedUser.getId();
-        LOG.info("User with id {} deleted restaurant with id {}", userId, id);
+    public void delete(@RequestParam int id) {
+        LOG.info("User with id {} deleted restaurant with id {}", LoggedUser.getId(), id);
         service.delete(id);
     }
 
