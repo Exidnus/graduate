@@ -81,7 +81,7 @@ public class User extends NamedEntity {
         this.menuUpvoteId = menuUpvoteId;
     }
 
-    public int getMenuUpvoteId() {
+    public int getMenuUpvotedId() {
         return menuUpvoteId;
     }
 

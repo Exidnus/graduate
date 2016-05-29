@@ -43,15 +43,15 @@ public class UserRestaurantController {
         return service.getAll();
     }
 
-    @RequestMapping(value = "/upvote/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/upvote/{id}", method = RequestMethod.POST)
     public void upvote(@PathVariable int id) {
         LOG.info("vote for restaurant with id {} from user with id {}", id, LoggedUser.getId());
         service.upvote(id, LoggedUser.getId());
     }
 
-    @RequestMapping(value = "/upvote/{userId}", method = RequestMethod.DELETE)
-    public void cancel(@PathVariable int userId) {
-        LOG.info("cancel vote for user with id {}", userId);
-        service.cancelUpvote(userId);
+    @RequestMapping(value = "/upvote", method = RequestMethod.DELETE)
+    public void cancelUpvote() {
+        LOG.info("cancel vote for user with id {}", LoggedUser.getId());
+        service.cancelUpvote(LoggedUser.getId());
     }
 }

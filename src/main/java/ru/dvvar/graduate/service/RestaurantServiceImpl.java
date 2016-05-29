@@ -11,6 +11,7 @@ import ru.dvvar.graduate.model.User;
 import ru.dvvar.graduate.repository.RestaurantRepository;
 import ru.dvvar.graduate.repository.UserRepository;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -67,7 +68,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Transactional
     public void cancelUpvote(int userId) {
         final User voter = userRepository.get(userId);
-        final Menu menu = repository.getMenu(voter.getMenuUpvoteId());
+        final Menu menu = repository.getMenu(voter.getMenuUpvotedId());
         menu.cancelUpvote();
         repository.save(menu);
         voter.setMenuUpvoteId(0);
@@ -76,6 +77,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public Restaurant add(Restaurant restaurant) {
+        restaurant.setMenus(Collections.singletonList(restaurant.getCurrentMenu()));
         return repository.save(restaurant);
     }
 

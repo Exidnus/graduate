@@ -73,16 +73,16 @@ public class RestaurantServiceTest extends TestCase {
 
     @Test
     public void shouldUpvote() throws Exception {
-        service.upvote(MENU_ID_1, USER_ID);
-        assertEquals(MENU_1.getCurrentUpvotes() + 1, service.getMenu(MENU_ID_1).getCurrentUpvotes());
-        assertEquals(MENU_ID_1, userService.get(USER_ID).getMenuUpvoteId());
+        service.upvote(MENU_ID_2, USER_ID);
+        assertEquals(MENU_2.getCurrentUpvotes() + 1, service.getMenu(MENU_ID_2).getCurrentUpvotes());
+        assertEquals(MENU_ID_2, userService.get(USER_ID).getMenuUpvotedId());
     }
 
     @Test
     public void shouldCancelUpvote() throws Exception {
         service.cancelUpvote(ADMIN_ID);
         assertEquals(MENU_3.getCurrentUpvotes() - 1, service.getMenu(MENU_ID_3).getCurrentUpvotes());
-        assertEquals(0, userService.get(ADMIN_ID).getMenuUpvoteId());
+        assertEquals(0, userService.get(ADMIN_ID).getMenuUpvotedId());
     }
 
     @Test
