@@ -63,9 +63,10 @@ public class Restaurant extends NamedEntity implements Comparable<Restaurant> {
         this.currentMenu = currentMenu;
     }
 
-    public void changeCurrentMenu(Menu currentMenu) {
-        menus.add(this.currentMenu);
+    public Restaurant changeCurrentMenu(Menu currentMenu) {
         this.currentMenu = currentMenu;
+        menus.add(currentMenu);
+        return this;
     }
 
     @Override

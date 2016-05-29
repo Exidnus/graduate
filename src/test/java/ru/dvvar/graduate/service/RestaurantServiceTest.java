@@ -102,6 +102,19 @@ public class RestaurantServiceTest extends TestCase {
     }*/
 
     @Test
+    public void shouldAddCurrentMenu() throws Exception {
+        service.addCurrentMenu(MENU_FOR_SAVE, RESTAURANT_ID_1);
+        final Restaurant restaurantWithNewCurrentMenu = service.getWithAllMenus(RESTAURANT_ID_1);
+        assertTrue(restaurantWithNewCurrentMenu.getMenus().size() == 3);
+        final Menu newCurrentMenu = restaurantWithNewCurrentMenu.getCurrentMenu();
+        MENU_FOR_SAVE.setId(newCurrentMenu.getId());
+        for (int i = 0; i < newCurrentMenu.getDishes().size(); i++) {
+            MENU_FOR_SAVE.getDishes().get(i).setId(newCurrentMenu.getDishes().get(i).getId());
+        }
+        MENU_MATCHER.assertEquals(MENU_FOR_SAVE, newCurrentMenu);
+    }
+
+    @Test
     public void shouldUpdateMenu() throws Exception {
         service.updateMenu(UPDATED_MENU);
         Restaurant restaurant = service.get(RESTAURANT_ID_2);

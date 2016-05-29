@@ -41,7 +41,11 @@ public class AdminRestaurantControllerTest extends AbstractControllerTest {
         RESTAURANT_FOR_SAVE.getCurrentMenu().getDishes().get(0).setId(saved.getCurrentMenu().getDishes().get(0).getId());
         RESTAURANT_FOR_SAVE.getCurrentMenu().getDishes().get(1).setId(saved.getCurrentMenu().getDishes().get(1).getId());
         RESTAURANT_MATCHER.assertEquals(saved, RESTAURANT_FOR_SAVE);
-        RESTAURANT_MATCHER.assertEquals(service.get(saved.getId()), RESTAURANT_FOR_SAVE);
+        final Restaurant savedFromDB = service.getWithAllMenus(saved.getId());
+        RESTAURANT_MATCHER.assertEquals(savedFromDB, RESTAURANT_FOR_SAVE);
+        System.out.println(savedFromDB.getMenus());
+        System.out.println(RESTAURANT_FOR_SAVE.getMenus());
+        MENU_MATCHER.assertListsEquals(savedFromDB.getMenus(), RESTAURANT_FOR_SAVE.getMenus());
     }
 
     @Test

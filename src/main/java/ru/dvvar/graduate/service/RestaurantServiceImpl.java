@@ -80,6 +80,13 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
+    @Transactional
+    public void addCurrentMenu(Menu menu, int restaurantId) {
+        final Restaurant restaurant = repository.getWithAllMenus(restaurantId);
+        repository.save(restaurant.changeCurrentMenu(menu));
+    }
+
+    @Override
     public boolean delete(int id) {
         return repository.delete(id);
     }

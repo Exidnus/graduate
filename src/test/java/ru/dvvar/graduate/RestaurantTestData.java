@@ -93,6 +93,8 @@ public class RestaurantTestData {
                         .sorted((d1, d2) -> d1.getPosition() - d2.getPosition())
                         .collect(Collectors.toList())))
                 .collect(Collectors.toList()));
+
+        RESTAURANT_FOR_SAVE.setMenus(Collections.singletonList(MENU_FOR_SAVE));
     }
 
     public static final List<Restaurant> RESTAURANTS = Arrays.asList(RESTAURANT_1, RESTAURANT_2, RESTAURANT_3)
