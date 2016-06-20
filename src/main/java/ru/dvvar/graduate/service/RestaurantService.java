@@ -4,6 +4,7 @@ import ru.dvvar.graduate.model.GeneralStatistics;
 import ru.dvvar.graduate.model.Menu;
 import ru.dvvar.graduate.model.Restaurant;
 import ru.dvvar.graduate.model.Statistics;
+import ru.dvvar.graduate.to.MenuTo;
 
 import java.util.List;
 
@@ -37,6 +38,8 @@ public interface RestaurantService {
     void addCurrentMenu(Menu menu, int restaurantId);
 
     void updateMenu(Menu menu);
+
+    void updateMenuFromMenuTo(MenuTo menuTo);
 
     boolean deleteMenu(int menuId);
 

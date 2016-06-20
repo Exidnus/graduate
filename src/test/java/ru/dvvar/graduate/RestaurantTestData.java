@@ -3,6 +3,8 @@ package ru.dvvar.graduate;
 import ru.dvvar.graduate.model.Dish;
 import ru.dvvar.graduate.model.Menu;
 import ru.dvvar.graduate.model.Restaurant;
+import ru.dvvar.graduate.to.MenuTo;
+import ru.dvvar.graduate.to.TransformerUtil;
 import ru.dvvar.graduate.util.matcher.ModelMatcher;
 
 import java.math.BigDecimal;
@@ -63,6 +65,8 @@ public class RestaurantTestData {
     public static final Menu MENU_2 = new Menu(MENU_ID_2, "Тайское меню 2", "Меню для праздничных дней", DISHES_2, 25, 75);
     public static final Menu MENU_3 = new Menu(MENU_ID_3, "Pizza and sushi menu 1", "Standart menu", DISHES_3, 43);
     public static final Menu MENU_4 = new Menu(MENU_ID_4, "Coffee and delicious cakes standart menu", "Just standart menu", DISHES_4);
+
+    public static final MenuTo MENU_TO_1 = TransformerUtil.fromMenu(MENU_2);
 
     public static final Restaurant RESTAURANT_1 = new Restaurant(RESTAURANT_ID_1, "Тайский ресторан", "Маленький ресторан с тайской едой, шеф-повар родом из Таиланда!", MENU_2);
     public static final Restaurant RESTAURANT_2 = new Restaurant(RESTAURANT_ID_2, "Pizza and sushi", "Интересное смешение культур: в этом ресторане подают как пиццу, так и суши", MENU_3);

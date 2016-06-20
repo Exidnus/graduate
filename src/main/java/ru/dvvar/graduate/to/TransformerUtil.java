@@ -11,9 +11,13 @@ public class TransformerUtil {
 
     }
 
-    public Menu updateFromMenuTo(Menu menu, MenuTo menuTo) {
+    public static Menu updateFromMenuTo(Menu menu, MenuTo menuTo) {
         menu.setDescription(menuTo.getDescription());
         menu.setDishes(menuTo.getDishes());
         return menu;
+    }
+
+    public static MenuTo fromMenu(Menu menu) {
+        return new MenuTo(menu.getId(), menu.getDescription(), menu.getDishes());
     }
 }

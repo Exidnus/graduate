@@ -123,6 +123,11 @@ public class RestaurantServiceTest extends TestCase {
     }
 
     @Test
+    public void shouldUpdateMenuFromMenuTo() throws Exception {
+        service.updateMenuFromMenuTo(MENU_TO_1);
+    }
+
+    @Test
     public void shouldDeleteMenu() throws Exception {
         assertTrue(service.deleteMenu(MENU_ID_3));
     }

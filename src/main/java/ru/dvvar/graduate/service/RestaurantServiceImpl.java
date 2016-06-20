@@ -10,6 +10,8 @@ import ru.dvvar.graduate.model.Restaurant;
 import ru.dvvar.graduate.model.User;
 import ru.dvvar.graduate.repository.RestaurantRepository;
 import ru.dvvar.graduate.repository.UserRepository;
+import ru.dvvar.graduate.to.MenuTo;
+import ru.dvvar.graduate.to.TransformerUtil;
 
 import java.util.Collections;
 import java.util.List;
@@ -97,6 +99,13 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Transactional
     public void updateMenu(Menu menu) {
         repository.save(menu);
+    }
+
+    @Override
+    @Transactional
+    public void updateMenuFromMenuTo(MenuTo menuTo) {
+        Menu menu = repository.getMenu(menuTo.getId());
+        repository.save(TransformerUtil.updateFromMenuTo(menu, menuTo));
     }
 
     @Override

@@ -9,9 +9,29 @@ import java.util.List;
  */
 public class MenuTo {
 
+    private Integer id;
+
     private String description;
 
     private List<Dish> dishes;
+
+    public MenuTo() {
+
+    }
+
+    public MenuTo(Integer id, String description, List<Dish> dishes) {
+        this.id = id;
+        this.description = description;
+        this.dishes = dishes;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getDescription() {
         return description;
