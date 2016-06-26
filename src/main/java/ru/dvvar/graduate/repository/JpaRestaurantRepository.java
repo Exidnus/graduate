@@ -26,6 +26,13 @@ public class JpaRestaurantRepository implements RestaurantRepository {
     }
 
     @Override
+    @Transactional
+    public void test(Menu menu, String newDescr) {
+        Menu gotMenu = em.find(Menu.class, menu.getId());
+        gotMenu.setDescription(newDescr);
+    }
+
+    @Override
     public List<Restaurant> getAll() {
         return em.createNamedQuery(Restaurant.GET_ALL, Restaurant.class).getResultList();
     }

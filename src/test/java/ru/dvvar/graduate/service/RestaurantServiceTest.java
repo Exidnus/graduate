@@ -10,6 +10,7 @@ import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ru.dvvar.graduate.model.Menu;
 import ru.dvvar.graduate.model.Restaurant;
+import ru.dvvar.graduate.repository.RestaurantRepository;
 
 import java.util.List;
 
@@ -33,6 +34,16 @@ public class RestaurantServiceTest extends TestCase {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RestaurantRepository restaurantRepository;
+
+    @Test
+    public void shouldJustWork() throws Exception {
+        restaurantRepository.test(MENU_1, "New Description");
+        assertEquals(restaurantRepository.getMenu(MENU_ID_1).getDescription(), "New Description");
+
+    }
 
     @Test
     public void shouldGet() throws Exception {

@@ -27,4 +27,6 @@ public interface RestaurantRepository {
     Menu save(Menu menu);
 
     boolean deleteMenu(int id);
+
+    void test(Menu menu, String newDescr);
 }
